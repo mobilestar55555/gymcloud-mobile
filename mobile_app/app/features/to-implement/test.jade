@@ -1,0 +1,11 @@
+ion-view.gc-profile-edit.bar-dark(hide-back-button="true")
+  ion-nav-buttons(side="left")
+    button.gc-icon.gc-hamburger(menu-toggle="left")
+  ion-nav-title
+    | Test
+  ion-content
+    .gc-list-wrapper
+      .list
+        .item(ng-repeat="user in userData")
+          span
+            | {{user.name}}

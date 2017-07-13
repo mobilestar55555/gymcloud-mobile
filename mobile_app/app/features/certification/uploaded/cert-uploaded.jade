@@ -1,0 +1,15 @@
+ion-view.bar-dark.gc-transparent-navbar.gc-cert
+  ion-nav-bar.gc-transparent-nav
+    ion-nav-back-button
+  ion-nav-title
+    span.nav-bar-title
+      | Certifications
+
+  ion-content(scroll="false")
+    .gc-cert-container.gc-cert-uploaded-container
+      img.gc-cert-upload-img(src="img/icons/onboarding/cert-uploaded.png")
+      span.gc-cert-text
+        | Your certification was successfully loaded and will appear in your profile.
+    button.gc-btn-bordered.gc-select-button(
+      ng-click="redirect()"
+    ) OK

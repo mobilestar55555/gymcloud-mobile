@@ -1,0 +1,27 @@
+ion-view.bar-dark.gc-program(hide-back-button="true")
+  ion-nav-buttons(side="left")
+    button.gc-icon.gc-hamburger(menu-toggle="left")
+  ion-nav-buttons(side="right")
+    a.gc-icon.gc-icon-assign(
+      ui-sref="app.assignItem({ itemType: 'program_templates', itemId: program.id })"
+    )
+  ion-nav-title
+    span.gc-main-title
+      | {{ program.name }}
+    span.gc-secondary-title
+      | {{ userName }}
+
+  ion-content(
+    ng-show="isEmpty"
+    scroll="false"
+  )
+    .gc-empty-page.gc-empty-program
+      span.gc-empty-text
+        | Looks like this program is empty
+
+  ion-content(
+    ng-hide="isEmpty"
+  )
+    ng-include(
+      src="'features/program/partials/_program.html'"
+    )

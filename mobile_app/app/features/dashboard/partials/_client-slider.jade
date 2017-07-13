@@ -1,0 +1,29 @@
+ion-slide-box
+  ion-slide(
+    ng-repeat="event in dashboard.events_scheduled_today"
+    ng-hide="isTrialEnds && isShowTrial"
+    ng-click="goToEvent(event)"
+  )
+    .workouts-scheduled.clearfix
+      .left-side
+        .next-workout-info
+          span.label
+            | Next Workout
+          span.workout-name
+            | {{ event.workout_name }}
+        .person-info
+          img.avatar(
+            ng-src="{{event.person_avatar || 'img/avatar.png'}}"
+          )
+          span.person-label
+            | Pro
+          span.person-name
+            | {{ event.pro_name }}
+      .right-side
+        .workout-date
+          span.month
+            | {{ event.begins_at | date:'MMM' }}
+          span.day
+            | {{ event.begins_at | date:'dd' }}
+          span.time
+            | {{ event.begins_at | date:'hh:mm a' }}

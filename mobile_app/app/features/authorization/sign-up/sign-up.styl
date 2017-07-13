@@ -1,0 +1,187 @@
+.gc-sign-up
+  background: url('../img/welcome-bg.png') left top no-repeat
+  background-size: cover
+
+  .enable-zindex
+    z-index: 9999
+
+  .gc-account-type-select
+    .list
+      margin: 20px
+
+      .item
+        height: 100px
+
+        img, .item-content
+          display: inline-block
+
+        .item-content
+          line-height: 66px
+
+        img
+          width: 40px
+          margin-bottom: 28px
+          margin-left: 20px
+
+        input:checked+.radio-content
+          .item-content
+            background: #fff
+
+        .ion-checkmark:before
+          background: #219bdc
+          color: #fff
+          font-size: 15px
+          border-radius: 15px
+          width: 30px
+          height: 30px
+          padding-left: 9px
+          padding-top: 7px
+          position: absolute
+          right: 15px
+          top: 34px
+
+      .item:nth-child(1)
+        border-radius: 5px 5px 0 0
+
+      .item:nth-last-child(1)
+        border-radius: 0 0 5px 5px
+
+  .gc-select-type-button
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-color: #459dd9;
+    text-transform: none;
+    height: 38px;
+    border-radius: 19px;
+    width: 50%;
+    margin: 0 0 20px 25%;
+    font-size: 11px;
+    background: #459dd9;
+
+  .gc-sign-up-form
+    width: 86%
+    margin-left: 7%
+    margin-bottom: 0
+
+    .item
+      padding: 8px 16px
+      font-size: 13px
+
+    label.item
+
+      input
+        width: 100%
+
+      .gc-disabled-email
+        display: block
+        padding: 15px 0
+
+    .gc-account-type-title
+      font-size: 11px
+      color: #5f5f5f
+      text-align: center
+      padding: 7px
+
+    .gc-account-type-buttons
+      padding: 0
+
+      .item:nth-child(1)
+        border-right: 1px solid #ddd
+
+      .item
+        display: inline-block
+        vertical-align: middle
+        width: 50%
+        padding: 0
+        border: none
+
+        .item-content
+          height: 80px
+          padding: 0px 20px
+
+          img
+            width: 31px
+            display: block
+            margin: 12px auto
+
+          p
+            font-size: 9px
+            white-space: pre-line
+            text-align: center
+
+    .gc-sign-up-buttons
+      flex: inherit
+      padding: 17px 5px
+
+      .gc-btn-bordered
+        text-transform: none
+        height: 38px
+        border-radius: 19px
+        width: 49%
+        font-size: 9px
+
+        .icon
+          font-size: 20px
+          line-height: 29px
+          margin-right: 2px
+
+        &.gc-facebook-sign-up
+          background: #1f57b5
+          border-color: #1f57b5
+          float: left
+
+          div
+            line-height: 29px
+            display: inline-block
+            vertical-align: bottom
+
+        &.gc-facebook-sign-up-disabled
+          background: #6F6F6F
+          border-color: #6F6F6F
+
+        &.gc-google-sign-up
+          background: #dd4b39
+          border-color: #dd4b39
+          float: right
+          div
+            line-height: 29px
+            display: inline-block
+            vertical-align: bottom
+
+        &.gc-google-sign-up-disabled
+          background: #6F6F6F
+          border-color: #6F6F6F
+
+  .gc-btn-bordered
+
+    &.gc-sign-up-button
+      border-color: #459dd9
+      text-transform: none
+      height: 38px
+      border-radius: 19px
+      width: 50%
+      margin: 20px 0 20px 25%
+      font-size: 11px
+      background: #459dd9
+
+  .gc-eula
+    background: none
+    border: none
+    width: 86%
+    margin-left: 7%
+    padding-left: 40px
+
+    .checkbox
+      left: 0
+      padding-left: 0
+
+    span
+      display: block
+      font-size: 11px
+
+    .gc-eula-link
+      color: #459dd9
+
+  .gc-error
+    font-size: 9px

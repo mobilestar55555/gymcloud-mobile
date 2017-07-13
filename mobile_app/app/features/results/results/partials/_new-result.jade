@@ -1,0 +1,43 @@
+.card.gc-result-card
+  .item.item-text-wrap.gc-exercise-result
+    .gc-float-container.gc-result-header(
+      ng-show="exercise.exercise_properties.length > 0"
+    )
+      div
+        .gc-float-left.gc-result-time
+          | Enter your current result
+      div
+        .gc-float-container
+          .gc-result-personal-best(
+            ng-click="toggleNewPersonalBest(exercise)"
+          )
+            i.gc-icon.gc-icon-personal-best-active(
+              ng-if="exercise.isPersonalBest"
+            )
+            i.gc-icon.gc-icon-personal-best(
+              ng-if="!exercise.isPersonalBest"
+            )
+            .gc-float-left
+              | Personal Best
+          .gc-delete-result(
+            ng-click="hideNewResultCard(exercise, $index)"
+          )
+            .gc-float-right
+              | Delete
+    .gc-properties.gc-float-container(
+      ng-repeat="property in exercise.exercise_properties | orderBy: 'position'"
+    )
+      div
+        .gc-property-name.gc-float-left
+          | {{ property.personal_property.name }}
+        .gc-property-name(
+          ng-show="property.property_unit_name != 'sets' && property.property_unit_name != 'reps'"
+        )
+          | &nbsp({{ property.property_unit_name }})
+      div
+        input.gc-property-value.gc-float-right(
+          type="number"
+          ng-model="exercise.newResult[$index]"
+          ng-focus="scrollToInput($event); removeResultsBottomMargin()"
+          ng-blur="addResultsBottomMargin()"
+        )

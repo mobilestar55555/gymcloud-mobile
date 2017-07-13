@@ -1,0 +1,15 @@
+ion-view.gc-user-profile.bar-dark
+  ion-nav-buttons(side="left")
+    button.gc-icon.gc-hamburger(menu-toggle="left")
+  ion-nav-title
+    | My Training Log
+  ion-content
+
+    ion-refresher(
+      pulling-text="Pull to refresh..."
+      on-refresh="initialize()"
+    )
+
+    ng-include(
+      src="'features/user/profile/partials/_user-profile.html'"
+    )

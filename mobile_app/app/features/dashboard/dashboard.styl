@@ -1,0 +1,295 @@
+.gc-dashboard
+  .dashboard-top
+    padding: 16px 13px
+    background-color: #3a99d8
+
+    .messages
+      display: flex
+      justify-content: space-between
+      margin-bottom: 18px
+      font-size: 12px
+      color: #fff
+
+  .workouts-scheduled
+    min-height: 130px
+    padding: 0 13px
+    background-color: #fff
+    border-radius: 4px 5px 5px 4px
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2)
+
+    .left-side
+      width: 55%
+      padding-top: 20px
+      padding-right: 13px
+      float: left
+      min-height: inherit
+
+    .right-side
+      width: 35%
+      padding: 20px 0 0 13px
+      float: right
+      min-height: inherit
+      border-left: 1px solid #ededed
+
+    .workout-date
+      font-weight: 700
+      text-transform: uppercase
+      text-align: center
+      color: #5f5f5f
+
+      span
+        display: block
+
+      .month
+        font-size: 18px
+        margin-bottom: 12px
+
+      .day
+        font-size: 40px
+        margin-bottom: 22px
+
+      .time
+        font-size: 12px
+
+    .next-workout-info
+      margin-bottom: 20px
+      span
+        display: block
+
+      .label
+        font-size: 12px
+        color: #bbb
+
+      .workout-name
+        max-width: 100%
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
+        font-size: 20px
+        color: #5f5f5f
+
+    .person-info
+      position: relative
+      padding-left: 37px
+
+      >span
+        display: block
+        font-size: 12px
+
+      .avatar
+        position: absolute
+        left: 0
+        width 30px
+        height 30px
+        border-radius: 50%
+
+      .person-label
+        line-height: 14px
+        color: #bbb
+
+      .person-name
+        color: #5f5f5f
+
+  .slider
+    padding-bottom: 15px
+
+  .slider-slides:before,
+  .slider-slides:after
+    content: ""
+    display: table
+
+  .slider-slides:after
+    clear: both
+
+  .slider-pager
+    position: relative
+    top: 13px
+
+    .slider-pager-page
+      width: 7px
+      color: #ededed
+
+      &.active
+        color: #2a7db4
+
+      .icon.ion-record
+        font-size: 8px
+
+  .dashboard-middle
+    padding-top: 20px
+
+  .complete-workouts
+    display: flex
+    align-items: center
+    padding: 20px 13px 40px
+
+    &.trainer
+      padding: 13px 13px
+
+      .complete-counter
+        font-size: 36px
+
+      .label-counter
+        width: 62%
+        float: right
+        margin-top: 0
+
+      .complete-indicator
+        width: 70px
+        margin-right: 12px
+
+      .dynamic-indicator
+        width: 74px
+        height: 33px
+        margin-right: 10px
+        background: no-repeat center center / contain
+
+        &.positive
+          background-image: url('../img/icons/positive-dynamic.svg')
+        &.negative
+          background-image: url('../img/icons/negative-dynamic.svg')
+        &.equals
+          background-image: url('../img/icons/equals-dynamic.png')
+          height: 20px
+
+  .complete-indicator
+    width: 90px
+    margin-right: 22px
+
+    .stroke
+      fill: none
+      stroke-width: 1.5
+      transition: stroke-dasharray .3s linear
+      stroke-linecap: round
+
+      &.default
+        stroke: #dbdbdb
+
+      &.progress
+        stroke: #d1dd0a
+        stroke-dasharray: 0 20
+        stroke-dashoffset: 1
+
+
+  .workouts-counters
+
+    .complete-counter
+      margin-right: 6px
+      font-weight: 700
+      font-size: 38px
+      line-height: 4px
+      vertical-align: bottom
+      color: #5f5f5f
+
+    .scheduled-counter
+      vertical-align: top
+      color: #bbb
+
+      &:before
+        content: '/'
+        margin-right: 6px
+
+    .label-counter
+      display: block
+      width: 80%
+      margin-top: 24px
+      font-size: 13px
+      line-height: 16px
+      color: #5f5f5f
+
+  .dashboard-bottom
+    margin: 15px 10px
+    border: 1px solid #e9eaea
+    border-radius: 4px 5px 5px 4px
+
+    .left-side,
+    .right-side
+      width: 50%
+      padding: 20px 0
+      text-align: center
+
+    .left-side
+      float: left
+      border-right: 1px solid #ededed
+
+    .right-side
+      float: right
+
+  .dashboard-icon
+    display: inline-block
+    width 30px
+    height: 34px
+    background-size: contain
+    background-repeat: no-repeat
+
+    &.programs
+      background-image: url('../img/icons/dashboard-programs.svg')
+
+    &.calendar
+      background-image: url('../img/icons/dashboard-calendar.svg')
+
+    &.workouts-calendar
+      background-image: url('../img/icons/workouts-calendar.svg')
+
+    &.client-performance
+      background-image: url('../img/icons/client-performance.svg')
+
+  .dashboard-icon-label
+    display: block
+    width: 57%
+    margin: auto
+    line-height: 16px
+    color: #3a99d8
+
+  .trial-ends
+    min-height: 130px
+    background-color: #fff
+    border-radius: 4px 5px 5px 4px
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2)
+
+    .trial-image
+      width: 25%
+      padding: 17px 13px 0 10px
+      float: left
+      min-height: 95px
+
+    .trial-text
+      width: 65%
+      padding: 10px 10px 0 13px
+      float: right
+      min-height: 95px
+
+    .trial-title
+      font-weight: 700
+      color: #5f5f5f
+
+    .trial-content
+      font-size: 13px
+      color: #5f5f5f
+
+    .left-button,
+    .right-button
+      width: 50%
+      min-height: 35px
+      border-top: 1px solid #ededed
+      text-align: center
+      line-height: 2.3
+
+    .left-button
+      color: #3a99d8
+      float: left
+      border-right: 1px solid #ededed
+
+    .right-button
+      float: right
+      color: #bbb
+
+  .gc-latest-activity-label
+    color: #bebebe
+    margin: 0px 10px 10px
+
+  .gc-view-all-btn
+    padding: 0 10px 10px
+    color: #3a99d8
+    font-size: 14px
+    float: right

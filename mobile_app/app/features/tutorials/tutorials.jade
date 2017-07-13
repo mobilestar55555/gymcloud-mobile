@@ -1,0 +1,32 @@
+ion-view.bar-dark.gc-transparent-navbar.gc-tutorials
+  ion-nav-bar.gc-transparent-nav
+    ion-nav-back-button
+  ion-nav-buttons(side="right")
+    span.gc-nav-action-button(
+      ng-click="finishTutorial()"
+    )
+      | Skip
+  ion-nav-title
+    span.nav-bar-title
+      | Welcome
+
+  ion-content(scroll='false')
+    .gc-tutorial-container
+      ion-slides(
+        options='options'
+        slider='data.slider'
+      )
+        ion-slide-page(
+          ng-repeat="slide in tutorial"
+        )
+          .gc-slide-content
+            img(ng-src="{{slide.image}}")
+            .gc-slide-text
+              .gc-title
+                | {{ slide.title }}
+              .gc-text
+                | {{ slide.text }}
+    button.gc-btn-bordered.gc-submit-btn(
+      ng-click="nextSlide()"
+    )
+      | Next

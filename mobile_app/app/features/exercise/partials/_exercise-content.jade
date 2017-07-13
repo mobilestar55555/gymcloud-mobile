@@ -1,0 +1,15 @@
+.gc-exercise-description(
+  ng-if="exercise.description"
+)
+  | {{ exercise.description }}
+
+.gc-exercise-video(
+  ng-if="exercise.video_url"
+)
+  iframe(
+    ng-src="{{ exercise.video_url }}"
+    frameborder="0"
+    width="560"
+    height="315"
+    allowfullscreen=""
+  )

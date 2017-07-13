@@ -1,0 +1,18 @@
+{
+  "name": "gymcloud-mobile",
+  "author": "GymCloud Team <support@gymcloud.com>",
+  "description": "GymCloud: mobile application",
+  "engines": {
+    "node": "5.8.0"
+  },
+  "devDependencies": {
+    "clean-css-brunch": "^2.0.0",
+    "coffee-script-brunch": "^2.0.0",
+    "css-brunch": "^2.6.1",
+    "jade-pages-brunch": "^2.0.0",
+    "javascript-brunch": "^2.0.0",
+    "protractor-linkuisref-locator": "^1.1.2",
+    "stylus-brunch": "^2.6.0",
+    "uglify-js-brunch": "^2.0.1"
+  }
+}

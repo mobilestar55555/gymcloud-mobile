@@ -1,0 +1,24 @@
+ion-view.bar-dark
+  ion-nav-title
+    | Results Entered
+
+  ion-content(scroll="false")
+    .gc-event-completed
+      .congratulatory-text
+        .text-title
+          | Congratulations!
+        .text-content
+          | You've completed {{ workoutName }} Workout
+      .buttons-block
+        .gc-btn-bordered(
+          ng-click="goToPersonalWorkout()"
+        )
+          | Schedule this Workout
+        .gc-btn-bordered(
+          ui-sref="app.personalItemsList({ userId: userId, personalType: 'personal-workouts' })"
+        )
+          | Back to Workouts
+        span(
+          ng-click="exitToDashboard()"
+        )
+          | Exit to Dashboard

@@ -1,0 +1,109 @@
+ion-view.gc-clients-page(hide-back-button="true")
+  ion-nav-buttons(side="left")
+    button.gc-icon.gc-hamburger(menu-toggle="left", ng-show="isTrainer")
+  ion-nav-buttons(side="right")
+    span.gc-nav-action-button(ng-click="goToState()")
+      | Add
+  ion-nav-title
+    | {{ userType }}
+
+  ion-tabs.tabs-top.gc-tabs
+    ion-tab(
+      title="Individuals"
+      on-select="selectIndividuals()"
+    )
+      .gc-empty-content(
+        ng-if="emptyClients"
+      )
+        img(src="img/empty-clients.png")
+        span
+          | You have not added any clients
+        button.gc-btn-bordered(
+          ui-sref="app.inviteClient"
+        )
+          | Invite Client
+      ion-scroll(
+        ng-if="!emptyClients"
+        zooming="true"
+        direction="y"
+      )
+        .gc-list-wrapper
+          .list.list-inset
+            .item.gc-search-field
+              input.gc-search-input(
+                type="text"
+                placeholder="Search Individual"
+                ng-model="individualQuery"
+              )
+              i.gc-icon.gc-search
+            .item(
+              ng-hide="client.id == userId"
+              ng-repeat="client in clients | filter:individualQuery | orderBy:['user_profile.first_name', 'user_profile.last_name']"
+              ui-sref="app.userProfile({ userId: client.id })"
+            )
+              .gc-item-main
+                .gc-avatar-wrapper(
+                  style="background-color: {{ client.user_profile.avatar_background_color }}"
+                )
+                  img(
+                    ng-src="{{ client.user_profile.avatar.thumb.url || 'img/avatar.png' }}"
+                    alt=" "
+                  )
+                .gc-name
+                  | {{ client.user_profile.first_name }} {{ client.user_profile.last_name }}
+                .gc-action-wrapper
+                  span.gc-action(
+                    data-id="{{ client.id }}"
+                  )
+                    i.icon.ion-chevron-right
+
+    ion-tab(
+      title="Groups"
+      on-select="selectGroups()"
+    )
+      .gc-empty-content(
+        ng-if="emptyGroups"
+      )
+        img(
+          src="img/empty-groups.png"
+        )
+        span
+          | You have not added any groups
+        button.gc-btn-bordered(
+          ui-sref="app.createGroup"
+        )
+          | Create Group
+      ion-scroll(
+        zooming="true"
+        direction="y"
+        ng-if="!emptyGroups"
+      )
+        .gc-list-wrapper
+          .list.list-inset
+            .item.gc-search-field
+              input.gc-search-input(
+                type="text"
+                placeholder="Search Group"
+                ng-model="groupQuery"
+              )
+              i.gc-icon.gc-search
+            .item(
+              ng-repeat="group in groups | filter:groupQuery",
+              ui-sref="app.clientGroup({ groupId: group.id })"
+            )
+              .gc-item-main
+                .gc-avatar-wrapper(
+                  style="background-color: {{ group.avatar_background_color }}"
+                )
+                  img(
+                    ng-src="{{ group.avatar.thumb.url || 'img/avatar.png' }}"
+                    alt=" "
+                  )
+                  span.client-icon-unread(
+                    ng-show="group.unread"
+                  )
+                .gc-name
+                  | {{ group.name }}
+                .gc-action-wrapper
+                  span.gc-action
+                    i.icon.ion-chevron-right

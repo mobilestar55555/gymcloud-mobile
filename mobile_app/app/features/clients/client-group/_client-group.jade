@@ -1,0 +1,34 @@
+.gc-header
+  .row
+    .col.col-100.gc-title.text-center
+      .gc-title-avatar
+        img(
+          ng-src="{{ user.user_profile.avatar.large.url || 'img/avatar.png' }}"
+          alt=" "
+        )
+.gc-list-wrapper
+  .list
+    a.item.item-icon-left.item-icon-right(
+      ui-sref="app.groupTemplatesList({ groupId: group.id, templateType: 'workout-templates' })"
+    )
+      i.gc-icon.gc-icon-workouts
+      | Workouts
+      span.badge
+        | {{ workoutsCount }}
+      i.gc-icon.gc-icon-right-arrow
+    a.item.item-icon-left.item-icon-right(
+      ui-sref="app.groupTemplatesList({ groupId: group.id, templateType: 'program-templates' })"
+    )
+      i.gc-icon.gc-icon-programs
+      | Programs
+      span.badge
+        | {{ programsCount }}
+      i.gc-icon.gc-icon-right-arrow
+    a.item.item-icon-left.item-icon-right(
+      ui-sref="app.groupClients({ groupId: group.id })"
+    )
+      i.gc-icon.gc-icon-clients
+      | Members
+      span.badge
+        | {{ clientsCount }}
+      i.gc-icon.gc-icon-right-arrow

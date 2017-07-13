@@ -1,0 +1,278 @@
+body
+  color: #5f5f5f
+
+.gymcloud-navbar.bar.bar-dark
+  background-color: #303539
+
+.gymcloud-navbar
+  h1.title
+    left: 0 !important
+    right: 0 !important
+    font-weight: bold
+    font-size: 15px
+
+  .title
+    margin: 0
+
+  .buttons-left
+    .left-buttons
+      margin: 0
+      min-width: 31px
+      display: inline-block
+
+  .gc-nav-action-button
+    line-height: 2.5
+    color: #3f99d6
+
+.nav-bar-title
+  font-size: 13px
+
+  .gc-main-title,
+  .gc-secondary-title
+    display: block
+    line-height: 1
+
+  .gc-main-title
+    margin-top: 10px
+
+  .gc-secondary-title
+    margin-top: 2px
+    font-size: 10px
+    text-transform: none
+
+.gc-list-wrapper
+  .list
+    .item
+      font-size: 14px
+      color: #5f5f5f
+      margin-left: 10px !important
+      margin-right: 10px !important
+      border-left: none
+      border-right: none
+      border-color: #e9eaea
+
+    .item-icon-left
+      padding-left: 46px
+
+.custom-list-items
+  .gc-list-wrapper
+    .list
+      .item
+        height 56px
+        margin: 0 0 !important
+        padding: 0 16px 0 27px
+        border: none !important
+        border-bottom: 1px solid #E6E2E2 !important
+        box-shadow: none
+
+        &.item-avatar
+          display: flex
+          min-height: 53px
+          align-items: center
+          justify-content: space-between
+          padding-left: 53px
+
+          .client-avatar
+            max-width: 26px
+            max-height: 26px
+            top: 50%
+            transform: translate(0,-50%)
+
+          .client-user-info
+            h2
+              font-size: 14px
+              color: #5f5f5f
+            p
+              font-size: 12px
+              color: #bbb
+
+        &.item-accordion
+          &.opened
+            border-color: transparent !important
+
+      .accordion-list
+        .item
+          display: flex
+          align-items: center
+          justify-content: space-between
+          padding-left: 16px
+          background-color: #F1F1F1 !important
+
+          &:first-of-type
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06)
+
+            &:before,
+            &:after
+              content: ''
+              position: absolute
+              top: 0
+              display: block
+              width: 0
+              height: 0
+
+            &:before
+              left: 18px
+              border-left: 10px solid transparent
+              border-right: 10px solid transparent
+              border-top: 10px solid rgba(0, 0, 0, 0.05)
+
+            &:after
+              top: 0
+              left: 19px
+              border-left: 9px solid transparent
+              border-right: 9px solid transparent
+              border-top: 9px solid #fdfdfd
+
+          .title
+            color: #5f5f5f
+            font-size: 12px
+
+          .date
+            color: #bbb
+            font-size: 12px
+
+.gymcloud-navbar
+  .title
+    text-transform: uppercase
+
+  .buttons
+    > span
+      position: relative
+
+      .badge
+        position: absolute
+        top: 0
+        right: 0
+        padding: 3px 7px
+
+      .badge.badge-assertive
+        background-color: #d70127
+
+      .badge.badge-balanced
+        background-color: #17c07e
+
+.gc-btn-large
+  background-color: #000000
+  font-size: 11px
+  color: #ffffff
+  padding: 8px 0
+  margin: 10px 6.25%
+  width: 87.5%
+  height: 37px
+  border-radius: 18px
+  text-align: center
+
+.gc-btn-bordered
+  font-size: 9px
+  line-height: 1
+  padding-top: 3px
+  color: #fff
+  width: 48px
+  height: 18px
+  border: 1px solid #fff
+  border-radius: 9px
+  text-align: center
+  text-transform: uppercase
+
+.gc-submit-btn
+  display: block
+  border-color: #459dd9
+  text-transform: none
+  height: 38px
+  border-radius: 19px
+  width: 50%
+  margin: 30px 0 0 25%
+  font-size: 11px
+  background: #459dd9
+
+.gc-float-container
+  > div
+    width: 50%
+    display: inline-block
+    vertical-align: middle
+
+    .gc-float-left
+      float: left
+    .gc-float-right
+      float: right
+
+.gc-empty-page
+  position: relative
+  height: 100%
+  background: center 42% no-repeat
+
+  &.gc-empty-workout,
+  &.gc-empty-workouts-list,
+  &.gc-empty-workouts-this-week
+    background-image: url('../img/icons/empty_pages/workout.png')
+    background-size: 40px
+
+  &.gc-empty-exercise,
+  &.gc-empty-exercises-list
+    background-image: url('../img/icons/empty_pages/exercise.png')
+    background-size: 45px
+
+  &.gc-empty-program,
+  &.gc-empty-programs-list
+    background-image: url('../img/icons/empty_pages/program.png')
+    background-size: 30px
+
+  &.gc-empty-calendar
+    background-image: url('../img/icons/empty_pages/calendar.png')
+    background-size: 46px
+
+    .gc-empty-text
+      width: 100%
+      top: 55%
+
+  &.gc-empty-menu-folder
+    background-image: url('../img/icons/empty_pages/menu-folder.png')
+    background-size: 26px
+
+  .gc-empty-text
+    display: block
+    width: 40%
+    color: #cbcacb
+    font-size: 14px
+    margin: 0 auto
+    text-align: center
+    position: relative
+    top: 50%
+
+  .gc-empty-menu-text
+    width: 100%
+    top: 45%
+    font-size: 12px
+
+.gc-error
+  color: #dd4b39
+  text-align: center
+
+.checkbox
+  input,
+  .checkbox-icon
+    width: 24px
+    height: 24px
+
+  input:checked+.checkbox-icon:before,
+  input:checked:before
+    background: #fff
+    border: 1px solid #00c13c
+
+  input:after,
+  .checkbox-icon:after
+    border-color: #00c13c
+    width: 11px
+    height: 6px
+    top: 31%
+    left: 31%
+
+.rotate-90
+  transform rotate(90deg)
+
+.rotate-180
+  transform rotate(180deg)
+
+.platform-ios textarea,
+.platform-ipad textarea
+  text-indent: -3px

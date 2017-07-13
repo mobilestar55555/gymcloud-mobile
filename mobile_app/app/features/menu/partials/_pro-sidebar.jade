@@ -1,0 +1,158 @@
+ion-side-menu.side-menu(side="left")
+  .side-menu-shadow
+  ion-content.side-menu-content.gc-empty-menu(
+    scroll="false"
+    ng-show="pathHistory.length && current_items.length == 0"
+  )
+    .list.menu-list
+      .item(
+        ng-show="pathHistory.length"
+      )
+        button.button.icon-left.ion-chevron-left.button-clear.gc-sidebar-back-button(
+          ng-click="prevLevel()"
+        )
+          | {{ prevItem.name }}
+    .gc-empty-page.gc-empty-menu-folder
+      span.gc-empty-text.gc-empty-menu-text
+        | This folder is empty
+  ion-content.side-menu-content(
+    ng-hide="pathHistory.length && current_items.length == 0"
+  )
+    ion-refresher(
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()"
+    )
+    .list.menu-list
+      .item(
+        ng-show="pathHistory.length"
+      )
+        button.button.icon-left.ion-chevron-left.button-clear.gc-sidebar-back-button(
+          ng-click="prevLevel()"
+        )
+          | {{ prevItem.name }}
+      .item.gc-profile-link(
+        ng-show="!pathHistory.length"
+        ui-sref-active="active-menu-item"
+        menu-close=""
+      )
+        .side-menu-item-content
+          .gc-avatar-wrapper(
+            style="background-color: {{ currentUser.avatar_background_color }}"
+            ui-sref="app.profileEdit"
+          )
+            img(
+              ng-src="{{ currentUser.user_profile.avatar.thumb.url || 'img/avatar.png' }}"
+              alt=" "
+            )
+          p.side-menu-item-text(
+            ui-sref="app.profileEdit"
+          )
+            | My Profile
+          i.icon.side-menu-icon-help(
+            browse-to="https://gymcloud.freshdesk.com"
+          )
+      .item(
+        ng-show="!pathHistory.length"
+        ui-sref="app.proDashboard"
+        ui-sref-active="active-menu-item"
+        menu-close=""
+      )
+        .side-menu-item-content
+          i.icon.side-menu-icon-dashboard
+          p.side-menu-item-text
+            | Dashboard
+      .item(
+        ng-if="isTrainer && !pathHistory.length"
+        ui-sref="app.clients"
+        ui-sref-active="active-menu-item"
+        menu-close=""
+      )
+        .side-menu-item-content
+          i.icon.side-menu-icon-clients
+          p.side-menu-item-text
+            | {{ userType }}
+      div(
+        ng-class="{ 'side-menu-expanded': menu_item.isExpanded || search.str, 'item': true }"
+        ng-repeat="menu_item in current_items"
+      )
+        .side-menu-item-content(
+          nav-clear=""
+        )
+          i.icon.round(
+            ng-if="isBase(menu_item)"
+            class="{{ menu_item.icon }}"
+            ng-click="goToItem(menu_item)"
+          )
+          i.icon.round(
+            ng-hide="menu_item.isFolder"
+            class="{{ menu_item.icon }}"
+            ng-click="goToItem(menu_item)"
+          )
+          i.icon.round.side-menu-icon-folder(
+            ng-show="menu_item.isFolder && !isBase(menu_item)"
+            ng-click="goToItem(menu_item)"
+          )
+          p.side-menu-item-text(
+            ng-click="goToItem(menu_item)"
+          )
+            | {{ menu_item.name }}
+          span.side-menu-item-action(
+            ng-show="menu_item.isFolder"
+            ng-click="toggleLevel(menu_item)"
+          )
+            i.icon.ion-chevron-right.side-menu-icon-action
+      .item(
+        ng-show="!pathHistory.length"
+        ui-sref="app.ownCalendar({ userId: currentUser.id })"
+        ui-sref-active="active-menu-item"
+        menu-close=""
+      )
+        .side-menu-item-content
+          i.icon.side-menu-icon-calendar
+          p.side-menu-item-text
+            | Calendar
+      .item(
+        ng-show="!pathHistory.length"
+        ui-sref="app.videoLibrary"
+        ui-sref-active="active-menu-item"
+        menu-close=""
+      )
+        .side-menu-item-content
+          i.icon.side-menu-icon-video-library
+          p.side-menu-item-text
+            | Video Library
+      .item(
+        ng-show="!pathHistory.length"
+        ui-sref="app.myTraining"
+        ui-sref-active="active-menu-item"
+        menu-close=""
+      )
+        .side-menu-item-content
+          i.icon.side-menu-icon-my-training
+          p.side-menu-item-text
+            | My Training Log
+      .item(
+        ng-show="!pathHistory.length"
+        ui-sref="app.conversationsList"
+        ui-sref-active="active-menu-item"
+        menu-close=""
+      )
+        .side-menu-item-content
+          i.icon.side-menu-icon-messages
+          p.side-menu-item-text
+            | Messages
+    .bar.bar-footer.bar-balanced(
+      ng-show="!pathHistory.length"
+    )
+      button.button.button-light(
+        nav-clear=""
+        ng-click="logOut()"
+        menu-close=""
+      )
+        i.icon.ion-power
+        |  Logout
+
+      .version(
+        ng-show="isApp"
+      )
+        | v. {{version}}s ({{build}})

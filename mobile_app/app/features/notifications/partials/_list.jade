@@ -1,0 +1,17 @@
+.gc-list-wrapper.gc-notifications-list
+  .list
+    a.item.item-icon-left(
+      ng-repeat="notification in notifications"
+      ng-click="goToNotification(notification)"
+    )
+      i.gc-icon.gc-notification-icon(
+        class="{{ notification | notificationCssClass }}"
+      )
+      .row.gc-notification-title
+        | {{ notification.owner_full_name }}
+        span.gc-schedule-time
+          | {{ notification.created_at | date:"h:mma" }}
+      .row.gc-notification-content
+        | {{ notification | notificationType }}
+        span.gc-schedule-date
+          | {{ notification.created_at | date:"MM/dd/yyyy" }}

@@ -1,0 +1,50 @@
+ion-view.gc-dashboard.bar-dark(hide-back-button="true")
+  ion-nav-buttons(side="left")
+    button.gc-icon.gc-hamburger(menu-toggle="left")
+  ion-nav-title
+    | Dashboard
+  ion-content
+    ion-refresher(
+      pulling-text="Pull to refresh..."
+      on-refresh="initialize()"
+    )
+    .dashboard-top
+      .messages
+        span.welcome-title
+          | Welcome, {{ user.user_data.user_profile.first_name }} {{ user.user_data.user_profile.last_name }}!
+        spam
+          | You have {{ dashboard.events_scheduled_today.length }} Workouts today
+      ng-include(
+        src="'features/dashboard/partials/_pro-slider.html'"
+        ng-if="user.user_data.is_pro"
+      )
+      ng-include(
+        src="'features/dashboard/partials/_client-slider.html'"
+        ng-if="!user.user_data.is_pro"
+      )
+    .dashboard-middle
+      ng-include(
+        src="'features/dashboard/partials/_pro-statistics.html'"
+        ng-if="user.user_data.is_pro"
+      )
+      ng-include(
+        src="'features/dashboard/partials/_client-statistics.html'"
+        ng-if="!user.user_data.is_pro"
+      )
+      ng-include(
+        src="'features/dashboard/partials/_pro-buttons.html'"
+        ng-if="user.user_data.is_pro"
+      )
+      ng-include(
+        src="'features/dashboard/partials/_client-buttons.html'"
+        ng-if="!user.user_data.is_pro"
+      )
+      .gc-latest-activity-label
+        | Latest activity
+      ng-include(
+        src="'features/notifications/partials/_list.html'"
+      )
+      span.gc-view-all-btn(
+        ui-sref="app.notifications"
+      )
+        | View All

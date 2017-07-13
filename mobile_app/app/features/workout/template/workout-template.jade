@@ -1,0 +1,25 @@
+ion-view.bar-dark.gc-workout(hide-back-button="true")
+  ion-nav-buttons(side="left")
+    button.gc-icon.gc-hamburger(menu-toggle="left")
+  ion-nav-buttons(side="right")
+    a.gc-icon.gc-icon-assign(
+      ui-sref="app.assignItem({ itemType: 'workout_templates', itemId: workout.id })"
+    )
+  ion-nav-title
+    span.nav-bar-title
+      | {{ workout.name }}
+
+  ion-content(
+    ng-show="isEmpty"
+    scroll="false"
+  )
+    .gc-empty-page.gc-empty-workout
+      span.gc-empty-text
+        | Looks like this {{ templateType }} is empty
+
+  ion-content(
+    ng-hide="isEmpty"
+  )
+    ng-include(
+      src="'features/workout/partials/_workout.html'"
+    )

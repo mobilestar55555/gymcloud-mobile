@@ -1,0 +1,82 @@
+ion-view.bar-dark.gc-workout-schedule-new.gc-user-event(hide-back-button="true")
+  ion-nav-buttons(side="left")
+    i.icon.ion-ios-arrow-back(
+      ng-click="goBack()"
+      style="font-size:32px;line-height:32px;padding-left:5px"
+    )
+  ion-nav-buttons(side="right")
+    span.gc-nav-action-button(
+      ng-click="saveSchedule(selectedWorkout, startDate, endDate)"
+    )
+      | Save
+  ion-nav-title
+    | Schedule
+  ion-content
+    .gc-list-wrapper
+      .list
+        .item
+          span
+            | Start
+          label.gc-value(
+            for="start-date"
+          )
+            | {{ startDate | date:"d MMMM" }}
+            input#start-date(
+              type="date"
+              ng-model="$parent.startDate"
+            )
+          label.gc-value(
+            for="start-time"
+          )
+            | {{ startDate | date:"h:mma" }}
+            input#start-time(
+              type="time"
+              ng-model="$parent.startDate"
+              ng-change="setEndTime($parent.startDate)"
+            )
+        .item
+          span
+            | End
+          span.gc-value
+            | {{ startDate | date:"d MMMM" }}
+          label.gc-value(
+            for="end-time"
+          )
+            | {{ endDate | date:"h:mma" }}
+            input#end-time(
+              type="time"
+              ng-model="$parent.endDate"
+            )
+        .item(
+          ng-if="currentUser.user_data.is_pro"
+        )
+          span
+            | User
+          span.gc-value
+            | {{ userName }}
+
+    span.gc-search-list-label
+      | Workouts
+
+    .gc-list-wrapper.gc-workouts-search-list
+      .list
+        .item
+          input.gc-workout-search-input(
+            type="text"
+            placeholder="Search Workout"
+            ng-model="query"
+          )
+          i.gc-icon.gc-search
+        ion-radio.item(
+          ng-repeat="workout in workoutsList | filter:query"
+          ng-model="$parent.$parent.selectedWorkout"
+          ng-value="workout.id"
+        )
+          i.gc-icon.gc-icon-workouts
+          .gc-float-container
+            div
+              .gc-float-left
+                | {{ workout.name }}
+            div
+              .gc-float-right
+                | {{ workout.program_name }}

@@ -1,0 +1,25 @@
+ion-view.bar-dark.gc-transparent-navbar.gc-cert
+  ion-nav-bar.gc-transparent-nav
+    ion-nav-back-button
+  ion-nav-buttons(side="right")
+    span.gc-nav-action-button(
+      ng-click="skip()"
+    )
+      | Skip
+  ion-nav-title
+    span.nav-bar-title
+      | {{ title }}
+
+  ion-content(scroll="false")
+    .gc-cert-container
+      img.gc-cert-upload-img(src="img/icons/onboarding/cert-upload.png")
+      span.gc-cert-text
+        | {{ text }}
+
+      label.gc-cert-upload-button
+        input(
+          type='file'
+          accept='application/pdf,application/x-pdf,image/*'
+          ngf-select="certUpload($file)"
+        )
+        | + Attach Certificate

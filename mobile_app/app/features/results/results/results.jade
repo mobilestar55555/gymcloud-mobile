@@ -1,0 +1,109 @@
+ion-view.bar-dark.gc-personal-workout-results(hide-back-button="true")
+  ion-nav-buttons(side="left")
+    a.gc-icon.gc-cross(
+      ng-show="!commentsState.visible && !workout.is_completed"
+      ng-click='leaveResults()'
+    )
+    button.button.back-button.button-clear(
+      ng-show="workout.is_completed"
+      ng-click="navAction()"
+    )
+      i.icon.ion-ios-arrow-back(
+        ng-show="workout.is_completed"
+      )
+  ion-nav-buttons(side="right")
+    a.gc-icon.gc-overview(
+      ng-click="overviewWorkout()"
+    )
+  ion-nav-title
+    span.gc-main-title(
+      ng-if="!commentsState.visible"
+    )
+      | {{ workout.workout_name }}
+    span.gc-main-title(
+      ng-if="commentsState.visible"
+    )
+      | Comments
+    span.gc-secondary-title
+      | {{ userName }}
+
+  ion-content(
+    has-bouncing="true"
+    delegate-handle="userMessageScroll"
+    ng-class="{'gc-results-no-margin': commentsState.visible || !resultsMargin}"
+  )
+    ion-list(
+      ng-hide="commentsState.visible"
+    )
+      div(
+        ng-repeat="exercise in currentExercisesGroup"
+      )
+
+        ion-item.item-stable.gc-exercise-title(
+          ng-click="toggleExercise(exercise, $index)"
+          ng-class="{active: isExerciseShown(exercise)}"
+        )
+          .gc-order-name.no-group(
+            class="{{ exercise.order_name.charAt(0) }}-group"
+          ) {{ exercise.order_name }}
+          .gc-exercise-name {{ exercise.name }}
+          i.icon(
+            ng-class="isExerciseShown(exercise) ? 'icon gc-icon-results-arrow' : 'icon gc-icon-results-arrow rotate-90'"
+          )
+
+        ion-item.item-accordion(
+          ng-show="isExerciseShown(exercise)"
+        )
+          .gc-exercise-results(
+            ng-show="exercise.exercise_properties.length > 0"
+          )
+
+            .gc-exercise-info
+              ng-include(
+                src="'features/results/results/partials/_info.html'"
+              )
+
+            .gc-exercise-results-content
+              ng-include(
+                src="'features/results/results/partials/_result-item.html'"
+              )
+
+            .gc-exercise-new-result(
+              ng-show="exercise.results.length == 0 || visibleResultsForm[$index] == true"
+            )
+              ng-include(
+                src="'features/results/results/partials/_new-result.html'"
+              )
+
+            .card.gc-result-buttons
+              ng-include(
+                src="'features/results/results/partials/_add-new-result.html'"
+              )
+
+          .gc-exercise-results(
+            ng-show="exercise.exercise_properties.length == 0"
+          )
+            .gc-exercise-info
+              span.gc-note(
+                ng-show="exercise.note"
+              )
+                | {{ exercise.note }}
+              hr.gc-colored-line
+            .gc-no-properties
+              | Exercise doesn't have any properties
+
+    .gc-exercise-comments(
+      ng-show="commentsState.visible"
+      ng-class="{'gc-comments-no-padding': !commentsPadding}"
+    )
+      ng-include(
+        src="'features/conversations/partials/_messages.html'"
+      )
+  ng-include(
+    ng-show="commentsState.visible"
+    src="'features/conversations/partials/_send-form.html'"
+  )
+
+  ng-include(
+    src="'features/results/results/partials/_nav-buttons.html'"
+  )

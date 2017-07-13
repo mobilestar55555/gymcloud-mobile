@@ -1,0 +1,42 @@
+.tabs.tabs-icon-only(
+  ng-class="{ 'gc-move-bar-to-top': commentsState.visible }"
+)
+  a.tab-item(
+    ng-click="prevExercise(currentExercisesGroup)"
+    ng-class="{ 'gc-disabled-btn': disablePrev }"
+  )
+    i.icon.gc-icon-results-arrow.rotate-180
+  a.tab-item(
+    ng-click="showComments()"
+    ng-hide="commentsState.visible"
+  )
+    i.icon.gc-results-comments
+    .gc-comments-count(
+      ng-show="conversation.length > 0"
+    )
+      | {{ conversation.length }}
+  a.tab-item.gc-comments-active(
+    ng-click="hideComments()"
+    ng-show="commentsState.visible"
+  )
+    i.icon.gc-results-comments
+  a.tab-item(
+    ui-sref="app.comingSoon"
+  )
+    i.icon.gc-results-timer
+    .gc-time
+      | 00:00
+  a.tab-item(
+    ui-sref="app.videoLibrary"
+  )
+    i.icon.gc-results-video-upload
+  a.tab-item(
+    ng-click="saveAndGoNextExercise(currentExercisesGroup)"
+    ng-hide="showFinish"
+  )
+    i.icon.gc-icon-results-arrow
+  a.tab-item.gc-finish-button(
+    ng-click="finish()"
+    ng-show="showFinish"
+  )
+    i.icon.gc-icon-results-arrow

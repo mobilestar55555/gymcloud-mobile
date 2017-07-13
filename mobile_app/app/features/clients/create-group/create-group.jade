@@ -1,0 +1,28 @@
+ion-view.bar-dark.gc-create-group
+  ion-nav-title
+    | Create new group
+
+  ion-content(scroll="false")
+    .gc-create-group-form(
+      ng-form=""
+      name="createGroupForm"
+    )
+      img(src="img/create-group.png")
+      span.gc-hint
+        | Create Group and add participants from Client's list
+      label.item
+        input(
+          type="text"
+          name="name"
+          placeholder="Group Name"
+          required=""
+          ng-model="name"
+        )
+      span.gc-error(
+        ng-show="createGroupForm.name.$dirty && createGroupForm.name.$error.required"
+      ) Group Name is required
+        
+    button.gc-btn-bordered.gc-submit-btn(
+      ng-disabled="createGroupForm.$invalid"
+      ng-click="create(name)"
+    ) Create & Add Clients

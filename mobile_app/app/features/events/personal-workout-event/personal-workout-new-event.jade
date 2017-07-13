@@ -1,0 +1,52 @@
+ion-view.bar-dark.gc-workout-schedule-new(hide-back-button="true")
+  ion-nav-buttons(side="left")
+    i.icon.ion-ios-arrow-back(
+      ng-click="goBack()"
+      style="font-size:32px;line-height:32px;padding-left:5px"
+    )
+  ion-nav-title
+    span.gc-main-title
+      | {{ userName }}
+    span.gc-secondary-title
+      | {{ workout.name }}
+  ion-content(scroll="false")
+    .gc-list-wrapper
+      .list
+        .item
+          span
+            | Start
+          label.gc-value(
+            for="start-date"
+          )
+            | {{ startDate | date:"d MMMM" }}
+            input#start-date(
+              type="date"
+              ng-model="startDate"
+            )
+          label.gc-value(
+            for="start-time"
+          )
+            | {{ startDate | date:"h:mma" }}
+            input#start-time(
+              type="time"
+              ng-model="startDate"
+              ng-change="setEndTime(startDate)"
+            )
+        .item
+          span
+            | End
+          span.gc-value
+            | {{ startDate | date:"d MMMM" }}
+          label.gc-value(
+            for="end-time"
+          )
+            | {{ endDate | date:"h:mma" }}
+            input#end-time(
+              type="time"
+              ng-model="endDate"
+            )
+
+    .gc-btn-large.gc-schedule-save(
+      ng-click="saveSchedule(startDate, endDate)"
+    )
+      | Save Schedule

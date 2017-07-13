@@ -1,0 +1,166 @@
+.gc-calendar-page
+  background: #0a0a0b
+
+  .gc-content
+    background: #fff
+
+    .gc-empty-calendar
+      // minus height of calendar
+      height: -moz-calc(100% - 300px)
+      height: -webkit-calc(100% - 300px)
+      height: calc(100% - 300px)
+
+    .gc-month-control
+      position: relative
+      margin-bottom: 10px
+      background: #fff
+      height: 50px
+      padding-top: 8px
+      border-bottom: 1px solid #d0d0d0
+
+      .gc-month-nav
+        width: 24px
+        min-width: 24px
+        height: 24px
+        line-height: 23px
+        display: inline-block
+        border-radius: 50px
+        text-align: center
+        background: transparent
+        border: 1px solid #569ae6
+        color: #569ae6
+        font-size: 10px
+        margin: 0 5px
+
+      .col-50
+        line-height: 23px
+        color: #5f5f5f
+        font-size: 14px
+        line-height: 24px
+
+    .gc-wrapper
+      border-bottom: 1px solid #d0d0d0
+      margin: 0
+
+      .gc-week
+        display: flex
+        display: -webkit-flex
+        flex-direction: row
+        -webkit-flex-direction: row
+        align-items: center
+        -webkit-align-items: center
+        justify-content: space-between
+        -webkit-justify-content: space-between
+        padding: 0 5px
+        margin-bottom: 18px
+
+        .gc-day
+          color: #303539
+          background: transparent
+          border: 2px solid transparent
+          width: 28px
+          height: 28px
+          line-height: 25px
+          display: inline-block
+          border-radius: 50px
+          text-align: center
+          font-size: 16px
+
+        .gc-other-month
+          color: #adaeaf
+
+        .gc-schedule
+          background: #569ae6
+          border-color: #569ae6
+          color: #fff
+
+        .gc-selected
+          color: #569ae6
+          border-color: #569ae6
+          background: #fff
+
+    .gc-schedule
+      border-bottom: 1px solid #d0d0d0
+
+      &:nth-child(1)
+        border-top: none
+
+      .item-content
+        padding: 0
+
+        .gc-main
+          color: #fff
+          padding: 15px 10px
+
+          > div
+            display: flex
+            display: -webkit-flex
+            flex-direction: row
+            -webkit-flex-direction: row
+            align-items: center
+            -webkit-align-items: center
+            justify-content: start
+            -webkit-justify-content: start
+
+          .gc-schedule-left
+            max-width: 35px
+            min-width: 35px
+            text-align: left
+
+            .gc-schedule-icon-wrapper
+              background: #569ae6
+              width: 24px
+              height: 24px
+              display: inline-block
+              border-radius: 50px
+              text-align: center
+
+              img
+                width: 12px
+                height: 14px
+                margin-top: 4px
+
+          .gc-schedule-middle
+            width: 100%
+            font-size: 14px
+            color: #5f5f5f
+            line-height: 18px
+            margin-bottom: 2px
+
+            .gc-date-wrapper
+              font-size: 12px
+
+              img
+                display: inline-block
+                height: 10px
+                width: 10px
+                vertical-align: baseline
+
+              .gc-schedule-time
+                color: #5f5f5f
+
+              .gc-schedule-date
+                color: #bbb
+
+            .gc-client-name
+              font-size: 12px
+
+            .gc-schedule-note
+              font-size: 10px
+              line-height: 11px
+              color: #bbb
+              margin-top: 3px
+
+          .gc-schedule-right
+
+            .gc-schedule-link
+              color: #569ae6
+              font-size: 16px
+      .item-options
+
+        .button-info
+          background-color: #db0327
+
+          img
+            width: 15px
+            margin: 0 auto

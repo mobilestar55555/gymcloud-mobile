@@ -1,0 +1,43 @@
+.card.gc-result-card(
+  ng-repeat="result in exercise.exercise_results | orderBy:'id':true"
+)
+  .item.item-text-wrap.gc-exercise-result
+    .gc-float-container.gc-result-header
+      div
+        .gc-float-left.gc-result-time
+          | Performed at {{ result.created_at | date:'h:mma' }}
+      div
+        .gc-float-container
+          .gc-result-personal-best(
+            ng-click="togglePersonalBest(result)"
+          )
+            i.gc-icon.gc-icon-personal-best-active(
+              ng-if="result.is_personal_best"
+            )
+            i.gc-icon.gc-icon-personal-best(
+              ng-if="!result.is_personal_best"
+            )
+            .gc-float-left
+              | Personal Best
+          .gc-delete-result(
+            ng-click="deleteResult(exercise, result, $index)"
+          )
+            .gc-float-right
+              | Delete
+    .gc-properties.gc-float-container(
+      ng-repeat="property in result.exercise_result_items | orderBy: 'position'"
+    )
+      div
+        .gc-property-name.gc-float-left
+          | {{ property.name }}
+        .gc-property-name(
+          ng-show="property.property_unit_name != 'sets' && property.property_unit_name != 'reps'"
+        )
+          | &nbsp({{ property.property_unit_name }})
+      div
+        input.gc-property-value.gc-float-right(
+          type="number"
+          ng-model="property.value"
+          ng-focus="scrollToInput($event); removeResultsBottomMargin()"
+          ng-blur="updateResult(property); addResultsBottomMargin()"
+        )

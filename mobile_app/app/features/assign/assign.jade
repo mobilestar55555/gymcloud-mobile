@@ -1,0 +1,62 @@
+ion-view.gc-clients-page
+  ion-nav-title
+    | Clients
+
+  ion-tabs.tabs-top.gc-tabs
+    ion-tab(title="Individuals")
+      ion-scroll(zooming="true", direction="y")
+        .gc-list-wrapper
+          .list.list-inset
+            label.item.item-checkbox-right(
+              ng-repeat="client in clients | orderBy:['user_profile.first_name', 'user_profile.last_name']"
+              ng-class="{ 'gc-me': client.id == userId}"
+            )
+              .gc-item-main
+                .gc-avatar-wrapper(
+                  style="background-color: {{ client.user_profile.avatar_background_color }}"
+                )
+                  img(
+                    ng-src="{{ client.user_profile.avatar.thumb.url || 'img/avatar.png' }}"
+                    alt=" "
+                  )
+                .gc-name(
+                  ng-if="client.id == userId"
+                )
+                  | Me
+                .gc-name(
+                  ng-if="client.id != userId"
+                )
+                  | {{ client.user_profile.first_name }} {{ client.user_profile.last_name }}
+                .gc-action-wrapper.checkbox.checkbox-input-hidden.disable-pointer-events.checkbox-circle
+                  input(
+                    type="checkbox"
+                    ng-click="changeClientAssignState($event, client.is_assigned, client)"
+                    ng-model="client.is_assigned"
+                    ng-checked="client.is_assigned"
+                  )
+                  i.checkbox-icon
+
+    ion-tab(title="Groups")
+      ion-scroll(zooming="true", direction="y")
+        .gc-list-wrapper
+          .list.list-inset
+            label.item.item-checkbox-right(
+              ng-repeat="group in groups"
+            )
+              .gc-item-main
+                .gc-avatar-wrapper(
+                  style="background-color: {{ group.avatar_background_color }}"
+                )
+                  img(
+                    ng-src="{{ group.avatar.thumb.url || 'img/avatar.png' }}"
+                    alt=" "
+                  )
+                .gc-name
+                  | {{ group.name }}
+                .gc-action-wrapper.checkbox.checkbox-input-hidden.disable-pointer-events.checkbox-circle
+                  input(
+                    type="checkbox"
+                    ng-click="changeGroupAssignState($event, group.is_assigned, group)"
+                    ng-model="group.is_assigned"
+                    ng-checked="group.is_assigned")
+                  i.checkbox-icon

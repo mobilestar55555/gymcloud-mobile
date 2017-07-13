@@ -1,0 +1,159 @@
+.gc-clients-page
+  overflow: visible
+  
+  .gc-tabs
+
+    .gc-empty-content
+      height: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+      flex-direction: column
+
+      img
+        height: 60px
+
+      span
+        margin: 20px 0
+        text-align: center
+        width: 120px
+        color: #cbcacb
+
+      .gc-btn-bordered
+        background: #fff
+        color: #459dd9
+        border-color: #459dd9
+        width: 95px
+        height: 40px
+        border-radius: 20px
+
+    .tabs
+      padding-top: 0
+      background: #fff
+      height: 58px
+      border: none
+
+      .tab-item
+        max-width: 100%
+        opacity: 1
+        border-left: none
+
+        .tab-title
+          height: 40px
+          font-size: 11px
+          color: #BBBBBB
+          background: #fff
+          border-bottom: 1px solid transparent
+          width: 100%
+          display: inline-block
+          line-height: 34px
+          text-transform: uppercase
+
+      .tab-item-active
+        margin-top: 0
+        border: none
+
+        .tab-title
+          display: inline-block !important
+          color: #3a99d8
+          border-color: #3a99d8
+
+    .pane
+      padding-top: 85px
+
+      .scroll-view
+        height: 100%
+
+  .gc-list-wrapper
+    
+    .list
+      background: transparent
+      margin: 10px 0 0 0
+
+      &.group-clients
+        margin-top: 50px
+
+      .item
+        padding: 0
+        background: transparent
+        border: none
+        border-bottom: 1px solid #e9eaea
+        font-size: 14px
+        color: #5f5f5f
+
+        &.gc-search-field
+          padding: 6px
+
+          .gc-search-input
+            margin: 4px
+            width: 100%
+            padding: 0 20px
+
+        &.gc-me
+          background-color: #e8e8e8 !important;
+
+        &:first-child
+          border-top: 1px solid #e9eaea
+
+        .gc-item-main
+          display: flex
+          display: -webkit-flex
+          flex-direction: row
+          -webkit-flex-direction: row
+          align-items: center
+          -webkit-align-items: center
+          justify-content: space-between
+          -webkit-justify-content: space-between
+          padding: 0 10px
+          background: transparent
+          position: relative
+
+          .gc-avatar-wrapper
+            width: 30px
+            min-width: 30px
+            margin-right: 10px
+            height: 30px
+            border-radius: 30px
+            background-size: 70%
+            position: relative
+
+            img
+              width: 30px
+              height: 30px
+              border-radius: 30px
+
+          .gc-name
+            width: 100%
+            text-align: left
+
+          .gc-action-wrapper
+            min-width: 30px
+            text-align: center
+            margin-left: 5px
+
+            .gc-action
+              width: 24px
+              min-width: 24px
+              height: 54px
+              line-height: 54px
+              display: inline-block
+              text-align: center
+
+              .icon
+                color: #3a99d8
+                font-size: 18px
+
+      .item-checkbox-right
+        padding: 10px 0
+
+.platform-ios
+  
+  &.platform-cordova
+  
+    .gc-clients-page  
+  
+      .gc-list-wrapper
+          
+          .list
+            background: transparent
+            margin: 30px 0 0 0

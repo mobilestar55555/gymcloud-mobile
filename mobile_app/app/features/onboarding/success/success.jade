@@ -1,0 +1,40 @@
+ion-view.bar-dark.gc-transparent-navbar.gc-onboarding-success
+  ion-nav-bar.gc-transparent-nav
+    ion-nav-back-button
+  ion-nav-title
+    span.nav-bar-title
+      | Congratulations
+
+  ion-content(scroll="false")
+    .gc-success-container
+      span.gc-success-text
+        | You have successfully preloaded your GymCloud library!
+      img.gc-whistle(src="img/icons/onboarding/success.png")
+      .gc-instructions
+        span
+          | Sign on to 
+        span.gc-link(
+          browse-to="http://www.gymcloud.com"
+        )
+          | GymCloud
+        span
+          |  from your PC to create new 
+        span.gc-link(
+          browse-to="http://gymcloud.freshdesk.com/support/solutions/articles/3000044192-exercises"
+        ) 
+          | Exercises, 
+        span.gc-link(
+          browse-to="http://gymcloud.freshdesk.com/support/solutions/articles/3000044193-workout"
+        )
+          | Workouts,
+        span
+          |  and 
+        span.gc-link(
+          browse-to="http://gymcloud.freshdesk.com/support/solutions/articles/3000048794--webapp-programs-how-to-add-new"
+        )
+          | Programs
+
+    button.gc-btn-bordered.gc-select-button(
+      ng-click="finishOnboarding()"
+    )
+      | Finish

@@ -1,0 +1,47 @@
+{
+  "name": "gymcloud-mobile",
+  "version": "1.0.0",
+  "author": "GymCloud Team <support@gymcloud.com>",
+  "description": "GymCloud: mobile application",
+  "private": true,
+  "scripts": {
+    "build": "cd mobile_app && brunch build && cd .."
+  },
+  "engines": {
+    "node": "5.8.0"
+  },
+  "dependencies": {
+    "bower": "^1.7.9",
+    "express": "^4.13.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-util": "^3.0.8",
+    "http-auth": "^2.3.6",
+    "shelljs": "^0.7.8"
+  },
+  "cordovaPlugins": [
+    {
+      "locator": "engine/cordova-crosswalk-engine-c0.7.1",
+      "id": "cordova-plugin-crosswalk-webview"
+    },
+    "cordova-plugin-crosswalk-webview",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-customurlscheme",
+    "ionic-plugin-keyboard",
+    "cordova-plugin-googleplus",
+    "cordova-plugin-facebook4",
+    "cordova-plugin-app-version"
+  ],
+  "cordovaPlatforms": [
+    "android",
+    {
+      "platform": "ios",
+      "version": "3.9.2",
+      "locator": "ios@3.9.2"
+    }
+  ]
+}

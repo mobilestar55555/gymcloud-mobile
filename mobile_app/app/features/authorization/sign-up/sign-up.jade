@@ -1,0 +1,161 @@
+ion-view.gc-transparent-navbar.bar-dark.gc-sign-up
+  ion-nav-bar.gc-transparent-nav
+    ion-nav-back-button(ng-show="showAccountSelect")
+    .nav-bar-block(ng-class="{ 'enable-zindex': !showAccountSelect}")
+      ion-header-bar.gc-transparent-nav.bar.bar-header
+        button.button.back-button.buttons.button-clear.header-item(
+          ng-if="!showAccountSelect"
+          ng-click="changeViews()"
+        )
+          i.icon.ion-ios-arrow-back
+          span.back-text
+  ion-nav-title
+    | Sign up
+  ion-content(
+    scroll="false"
+    ng-show="showAccountSelect"
+  )
+    ion-list.gc-account-type-select
+      label.item.item-radio
+        input.ng-valid.ng-dirty.ng-valid-parse.ng-touched(
+          type="radio"
+          name="accountType"
+          required=""
+          ng-model="user.is_client"
+          ng-value="false"
+        )
+        .radio-content
+          img(src="img/trainer.png")
+          .item-content.disable-pointer-events
+            | I'm a Fitness Professional
+          i.radio-icon.disable-pointer-events.icon.ion-checkmark
+      label.item.item-radio
+        input.ng-valid.ng-dirty.ng-valid-parse.ng-touched(
+          type="radio"
+          name="accountType"
+          required=""
+          ng-model="user.is_client"
+          ng-value="true"
+        )
+        .radio-content
+          img(src="img/signup-client.png")
+          .item-content.disable-pointer-events
+            | I'm a client
+          i.radio-icon.disable-pointer-events.icon.ion-checkmark
+
+    button.gc-btn-bordered.gc-select-type-button(
+      ng-click="changeViews()"
+    ) Next
+
+  ion-content(
+    ng-hide="showAccountSelect"
+  )
+    .list.gc-sign-up-form(
+      ng-form=""
+      name="signUpForm"
+    )
+      .item.gc-sign-up-buttons
+        .gc-btn-bordered.gc-facebook-sign-up(
+          ng-class="{ 'gc-facebook-sign-up-disabled': socialLoginDisabled }"
+          ng-click="facebookLogin()"
+        )
+          i.icon.ion-social-facebook
+          div
+            | Sign up with Facebook
+        .gc-btn-bordered.gc-google-sign-up(
+          ng-click="googleLogin()"
+        )
+          i.icon.ion-social-googleplus-outline
+          div
+            | Sign up with Google+
+
+      label.item
+        input(
+          type="text"
+          name="firstName"
+          placeholder="First Name"
+          required=""
+          ng-model="user.first_name"
+        )
+        span.gc-error(
+          ng-show="signUpForm.firstName.$dirty && signUpForm.firstName.$error.required"
+        ) First Name is required
+
+      label.item
+        input(
+          type="text"
+          name="lastName"
+          placeholder="Last Name"
+          required=""
+          ng-model="user.last_name"
+        )
+        span.gc-error(
+          ng-show="signUpForm.lastName.$dirty && signUpForm.lastName.$error.required"
+        ) Last Name is required
+
+      label.item
+        input(
+          type="email"
+          name="email"
+          placeholder="Email"
+          required=""
+          ng-model="user.email"
+        )
+        span.gc-error(
+          ng-show="signUpForm.email.$error.email"
+        )
+          | Enter a valid email
+        span.gc-error(
+          ng-show="signUpForm.email.$dirty && signUpForm.email.$error.required"
+        )
+          | Email is required
+
+      label.item
+        input(
+          type="password"
+          name="password"
+          placeholder="Password"
+          ng-minlength="6"
+          required=""
+          ng-model="user.password"
+        )
+        span.gc-error(
+          ng-show="signUpForm.password.$dirty && signUpForm.password.$error.required"
+        ) Password is required
+        span.gc-error(
+          ng-show="signUpForm.password.$dirty && signUpForm.password.$error.minlength"
+        ) Password minimum length is 6 characters
+
+      label.item
+        input(
+          type="password"
+          name="password_confirm"
+          placeholder="Confirm Password"
+          required=""
+          ng-model="user.password_confirmation"
+        )
+        span.gc-error(
+          ng-show="signUpForm.password_confirm.$dirty && user.password_confirmation != user.password"
+        ) Fields do not match!
+
+    label.item.item-checkbox.gc-eula
+      .checkbox.checkbox-input-hidden.disable-pointer-events.checkbox-circle(
+        ng-click="checkEula()"
+      )
+        input(
+          type="checkbox"
+          ng-model="eulaIsChecked"
+        )
+        i.checkbox-icon
+      .item-content
+        span
+          | I Agree with the
+        span.gc-eula-link(
+          browse-to="https://www.gymcloud.com/legal"
+        )
+          | GymCloud End User Agreement
+
+    button.gc-btn-bordered.gc-sign-up-button(
+      ng-disabled="signUpForm.$invalid"
+      ng-click="signUp(user)"
+    ) Sign Up

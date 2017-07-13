@@ -1,0 +1,41 @@
+ion-view.gc-client-performance.custom-list-items.bar-dark(hide-back-button="false")
+  ion-nav-title
+    | Clients Performance
+  ion-content
+    .gc-list-wrapper
+      .list
+        div(
+          ng-repeat="client in clients | orderBy:'full_name'"
+          ui-sref="app.userProfile({ userId: client.id })"
+        )
+          a.item.item-avatar(
+            ng-click="client.unfolded = !client.unfolded"
+          )
+            img.client-avatar(
+              ng-src="{{ client.avatar.thumb.url || 'img/avatar.png' }}"
+              alt=" "
+            )
+            .client-user-info
+              h2
+                | {{ client.full_name }}
+            .client-performance-info
+              span.last-week-performance
+                | {{ client.last_week_performance * 100 | number:0 }}%
+              span.this-week-performance.positive(
+                ng-class="{positive : client.this_week_performance > client.last_week_performance, negative : client.this_week_performance < client.last_week_performance, equal : client.this_week_performance == client.last_week_performance}"
+              )
+                | {{ client.this_week_performance * 100 | number:0 }}%
+          .accordion-list(
+            ng-show="client.unfolded"
+          )
+            a.item(
+              ng-repeat="event in client.workout_events"
+            )
+              .left-side
+                h2.title
+                  | {{ event.workout_name }}
+                span.date
+                  | {{ event.begins_at | date:'hh:mm a MM/dd/yyyy' }}
+              i.gc-workout-status-icon.complete(
+                ng-class="{complete : event.is_completed, incomplete : !event.is_completed}"
+              )

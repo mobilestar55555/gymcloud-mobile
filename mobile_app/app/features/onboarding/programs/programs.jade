@@ -1,0 +1,35 @@
+ion-view.bar-dark.gc-transparent-navbar.gc-onboarding-programs
+  ion-nav-bar.gc-transparent-nav
+    ion-nav-back-button
+  ion-nav-title
+    span.nav-bar-title
+      | Program selection
+
+  ion-content
+    span.gc-hint
+      | To get started, we recommend preloading your library with exercises, workouts, and programs.
+      | Select a fitness program below.
+    ion-list
+      .parent-list(
+        ng-repeat="program in programPresets"
+      )
+        ion-checkbox.item-checkbox-right.parent-item(
+          ng-click="toggleGroup(program)"
+          ng-checked="program.isSelected"
+        )
+          | {{ program.name }}
+        .nested-list
+          ion-checkbox.item-checkbox-right(
+            ng-repeat="template in program.program_templates"
+            ng-model="template.isChecked"
+            ng-show="program.isSelected"
+          )
+            | {{ template.name }}
+
+    span.gc-hint
+      | Also, you can use Global Search to find specific exercises, workouts, or programs.
+
+    button.gc-btn-bordered.gc-select-button(
+      ng-click="finishOnboarding()"
+    )
+      | Next

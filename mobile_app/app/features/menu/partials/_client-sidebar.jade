@@ -1,0 +1,184 @@
+ion-side-menu.side-menu(side="left")
+  .side-menu-shadow
+  ion-content.side-menu-content.gc-empty-menu(
+    scroll="false"
+    ng-show="!isClientLibraryRoot && currentLibraryItems.length == 0"
+  )
+    .list.menu-list
+      .item
+        button.button.icon-left.ion-chevron-left.button-clear.gc-sidebar-back-button(
+          ng-click="goToRootLevel()"
+        )
+          | {{ prevItem }}
+    .gc-empty-page.gc-empty-menu-folder
+      span.gc-empty-text.gc-empty-menu-text This folder is empty
+  ion-content.side-menu-content(
+    ng-hide="pathHistory.length && current_items.length == 0"
+  )
+    ion-refresher(
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()"
+    )
+    .list.menu-list
+      .item(
+        ng-show="!isClientLibraryRoot"
+      )
+        button.button.icon-left.ion-chevron-left.button-clear.gc-sidebar-back-button(
+          ng-click="goToRootLevel()"
+        )
+          | {{ prevItem }}
+      .item(
+        ng-show="!isClientLibraryRoot && !item.is_program_part"
+        ng-repeat="item in currentLibraryItems"
+        ng-click="goToPersonalItem(item.id)"
+      )
+        .side-menu-item-content
+          i.icon.round(
+            class="side-menu-icon-{{ currentLibraryItemsType }}"
+          )
+          p.side-menu-item-text
+            | {{ item.name }}
+      .item.gc-profile-link(
+        ng-show="isClientLibraryRoot"
+        ui-sref="app.profileEdit"
+        ui-sref-active="active-menu-item"
+        menu-close=""
+      )
+        .side-menu-item-content
+          .gc-avatar-wrapper(
+            style="background-color: {{ currentUser.avatar_background_color }}"
+          )
+            img(
+              ng-src="{{ currentUser.user_profile.avatar.thumb.url || 'img/avatar.png' }}"
+              alt=" "
+            )
+          p.side-menu-item-text
+            | My Profile
+          i.icon.side-menu-icon-help(
+            browse-to="https://gymcloud.freshdesk.com"
+          )
+      .item(
+        ng-show="isClientLibraryRoot"
+        ui-sref="app.clientDashboard"
+        ui-sref-active="active-menu-item"
+        menu-close=""
+      )
+        .side-menu-item-content
+          i.icon.side-menu-icon-dashboard
+          p.side-menu-item-text
+            | Dashboard
+      .item(
+        ng-show="isClientLibraryRoot"
+      )
+        .side-menu-item-content
+          i.icon.round.side-menu-icon-program(
+            ng-click="goToPersonalFolder('personal-programs')"
+          )
+          p.side-menu-item-text(
+            ng-click="goToPersonalFolder('personal-programs')"
+          )
+            | Programs
+          span.side-menu-item-action(
+            ng-click="showLibraryContent('Programs')"
+          )
+            i.icon.ion-chevron-right.side-menu-icon-action
+      .item(
+        ng-show="isClientLibraryRoot"
+      )
+        .side-menu-item-content
+          i.icon.round.side-menu-icon-workout(
+            ng-click="goToPersonalFolder('personal-workouts')"
+          )
+          p.side-menu-item-text(
+            ng-click="goToPersonalFolder('personal-workouts')"
+          )
+            | Workouts
+          span.side-menu-item-action(
+            ng-click="showLibraryContent('Workouts')"
+          )
+            i.icon.ion-chevron-right.side-menu-icon-action
+      .item(
+        ng-show="isClientLibraryRoot"
+      )
+        .side-menu-item-content
+          i.icon.round.side-menu-icon-warmup(
+            ng-click="goToPersonalFolder('personal-warmups')"
+          )
+          p.side-menu-item-text(
+            ng-click="goToPersonalFolder('personal-warmups')"
+          )
+            | Warmups
+          span.side-menu-item-action(
+            ng-click="showLibraryContent('Warmups')"
+          )
+            i.icon.ion-chevron-right.side-menu-icon-action
+      .item(
+        ng-show="isClientLibraryRoot"
+      )
+        .side-menu-item-content
+          i.icon.round.side-menu-icon-exercise(
+            ng-click="goToPersonalFolder('personal-exercises')"
+          )
+          p.side-menu-item-text(
+            ng-click="goToPersonalFolder('personal-exercises')"
+          )
+            | Exercises
+          span.side-menu-item-action(
+            ng-click="showLibraryContent('Exercises')"
+          )
+            i.icon.ion-chevron-right.side-menu-icon-action
+      .item(
+        ng-show="isClientLibraryRoot"
+        ui-sref="app.ownCalendar({ userId: currentUser.id })"
+        ui-sref-active="active-menu-item"
+        menu-close=""
+      )
+        .side-menu-item-content
+          i.icon.side-menu-icon-calendar
+          p.side-menu-item-text
+            | Calendar
+      .item(
+        ng-show="isClientLibraryRoot"
+        ui-sref="app.videoLibrary"
+        ui-sref-active="active-menu-item"
+        menu-close=""
+      )
+        .side-menu-item-content
+          i.icon.side-menu-icon-video-library
+          p.side-menu-item-text
+            | Video Library
+      .item(
+        ng-show="isClientLibraryRoot && !pathHistory.length && conversationId"
+        ui-sref="app.clientConversation({ conversationId: conversationId })"
+        ui-sref-active="active-menu-item"
+        menu-close=""
+      )
+        .side-menu-item-content
+          i.icon.side-menu-icon-messages
+          p.side-menu-item-text
+            | Messages
+      .item(
+        ng-show="isClientLibraryRoot && !pathHistory.length && noClientConversations"
+        ui-sref="app.newConversation({ recipientId: proId })"
+        ui-sref-active="active-menu-item"
+        menu-close=""
+      )
+        .side-menu-item-content
+          i.icon.side-menu-icon-messages
+          p.side-menu-item-text
+            | Messages
+    .bar.bar-footer.bar-balanced(
+      ng-show="isClientLibraryRoot"
+    )
+      button.button.button-light(
+        nav-clear=""
+        ng-click="logOut()"
+        menu-close=""
+      )
+        i.icon.ion-power
+        |  Logout
+
+      .version(
+        ng-show="isApp"
+      )
+        | v. {{version}}s ({{build}})

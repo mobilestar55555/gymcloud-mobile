@@ -1,0 +1,11 @@
+ion-view.gc-notifications.bar-dark
+  ion-nav-title
+    | Notifications
+  ion-content
+    ion-refresher(
+      pulling-text="Pull to refresh..."
+      on-refresh="getNotifications()"
+    )
+    ng-include(
+      src="'features/notifications/partials/_list.html'"
+    )

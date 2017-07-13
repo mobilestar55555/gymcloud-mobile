@@ -1,0 +1,13 @@
+.dashboard-bottom.clearfix
+  .left-side(
+    ui-sref="app.personalItemsList({ userId: user.user_data.id, personalType: 'personal-programs' })"
+  )
+    i.dashboard-icon.programs
+    span.dashboard-icon-label
+      | Programs
+  .right-side(
+    ng-click="scheduleNewEvent()"
+  )
+    i.dashboard-icon.calendar
+    span.dashboard-icon-label
+      | Schedule

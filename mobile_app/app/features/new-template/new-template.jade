@@ -1,0 +1,9 @@
+ion-view
+  ion-nav-title
+    | Add new {{ templateType }}
+
+  ion-content(scroll="false")
+    .gc-new-template
+      img(src="img/icons/available-on-web.png")
+      span
+        | You need to sign on to the website via your PC to add new {{ templateType | pluralize }}

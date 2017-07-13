@@ -1,0 +1,42 @@
+ion-view.bar-dark.gc-workout
+  ion-nav-title
+    span.gc-main-title
+      | {{ workout.name }}
+    span.gc-secondary-title
+      | {{ userName }}
+
+  ion-content(
+    ng-show="isEmpty"
+    scroll="false"
+  )
+    .gc-empty-page.gc-empty-workout
+      span.gc-empty-text
+        | Looks like this workout is empty
+
+  ion-content(
+    ng-hide="isEmpty"
+  )
+    ng-include(
+      src="'features/workout/partials/_workout.html'"
+    )
+
+    ng-include(
+      ng-if="programId"
+      src="'features/workout/partials/_personal-program-workout-nav-buttons.html'"
+    )
+
+  .tabs.gc-workout-buttons.row.text-center(
+    ng-hide="workout.is_warmup"
+  )
+    .col.col-50(
+      ui-sref="app.personalWorkoutNewEvent({userId: userId, workoutId: workout.id})"
+    )
+      i.gc-icon.gc-icon-calendar
+      .gc-schedule-button
+        | Schedule
+    .col.col-50(
+      ng-click="createEvent()"
+    )
+      i.gc-icon.gc-icon-add
+      .gc-schedule-button
+        | Start Workout

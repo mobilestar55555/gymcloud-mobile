@@ -1,0 +1,37 @@
+.gc-program-info(
+  ng-if="program.description || program.note"
+)
+  div(
+    ng-if="program.description"
+  )
+    .gc-info-title
+      | Program Description:
+    .gc-info-text
+      | {{ program.description }}
+  div(
+    ng-if="program.note"
+  )
+    .gc-info-title
+      | Program Note:
+    .gc-info-text
+      | {{ program.note }}
+
+.card.gc-card(
+  ng-repeat="week in program.weeks | orderBy: 'position'"
+)
+  .item.item-divider.gc-card-title
+    | {{ week.name }}
+  .item.item-text-wrap.gc-card-content(
+    ng-repeat="workout in program.workouts | filter:{week_id : week.id} | orderBy: ['position', 'id']"
+    ng-click="goToWorkout(workout.workout_id)"
+  )
+    | {{ workout.workout.name }}
+    i.icon.ion-chevron-right
+
+.card.gc-card
+  .item.item-text-wrap.gc-card-content(
+    ng-repeat="workout in program.workouts | filter:{week_id : null} | orderBy: ['position', 'id']"
+    ng-click="goToWorkout(workout.workout_id)"
+  )
+    | {{ workout.workout.name }}
+    i.icon.ion-chevron-right

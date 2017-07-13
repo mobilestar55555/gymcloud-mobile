@@ -1,0 +1,16 @@
+.complete-workouts
+  svg.complete-indicator(height='90', width='90', viewbox='0 0.5 10 8')
+    path.stroke.default(d='M2 8 A 4 4 0 1 1 8 8')
+    //- For managing progress, change first number in stroke-dasharray:
+    path.stroke.progress(
+      d='M2 8 A 4 4 0 1 1 8 8'
+      style='stroke-dasharray: {{coefficient}} 20'
+    )
+
+  .workouts-counters
+    span.complete-counter
+      | {{ dashboard.events_completed_this_week_count }}
+    span.scheduled-counter
+      | {{ dashboard.events_scheduled_this_week_count }}
+    span.label-counter
+      | Workouts completed this week

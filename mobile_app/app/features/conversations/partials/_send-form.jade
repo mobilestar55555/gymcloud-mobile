@@ -1,0 +1,36 @@
+ion-footer-bar.bar-stable.item-input-inset.message-footer(keyboard-attach="")
+  .gc-preview-name(
+    ng-show="newMessage.attachment"
+    ng-click="removeAttachment($file)"
+  )
+    | {{newMessage.attachment.name}} x
+  .gc-attachment-msg-btn
+    img.footer-btn(
+      src="img/icons/message-attachment.png"
+      ngf-select="attachFile($file)"
+      ngf-accept="'image/*,video/*'"
+    )
+  label.item-input-wrapper
+    textarea(
+      ng-model="newMessage.body"
+      placeholder="Start typing..."
+      ng-blur="addLastCommentPadding()"
+      ng-focus="removeLastCommentPadding()"
+      required=""
+      minlength="1"
+      maxlength="1500"
+      msd-elastic
+    )
+  .footer-btn-wrap
+    button.footer-btn(
+      ng-click="sendFirstMessage(newMessage.body)"
+      ng-show="isNewConversation"
+      ng-disabled="!newMessage.body && !newMessage.attachment || newMessage.body === '' && !newMessage.attachment|| sendingIsBlocked"
+    )
+     | Send
+    button.footer-btn(
+      ng-click="sendMessage(newMessage.body)"
+      ng-hide="isNewConversation"
+      ng-disabled="!newMessage.body && !newMessage.attachment || newMessage.body === '' && !newMessage.attachment|| sendingIsBlocked"
+    )
+     | Send

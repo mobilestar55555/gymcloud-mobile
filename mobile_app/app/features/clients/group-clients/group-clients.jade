@@ -1,0 +1,25 @@
+ion-view.gc-clients-page
+  ion-nav-title
+    | {{group.name}}
+
+  .gc-list-wrapper
+    .list.list-inset.group-clients
+      .item(
+        ng-repeat="client in clients"
+        ui-sref="app.userProfile({ userId: client.id })"
+      )
+        .gc-item-main
+          .gc-avatar-wrapper(
+            style="background-color: {{ client.user_profile.avatar_background_color }}"
+          )
+            img(
+              ng-src="{{ client.user_profile.avatar.thumb.url || 'img/avatar.png' }}"
+              alt=" "
+            )
+          .gc-name
+            | {{ client.user_profile.first_name }} {{ client.user_profile.last_name }}
+          .gc-action-wrapper
+            span.gc-action(
+              data-id="{{ client.id }}"
+            )
+              i.icon.ion-chevron-right

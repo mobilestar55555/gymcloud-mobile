@@ -1,0 +1,47 @@
+span.gc-note(
+  ng-show="exercise.note"
+)
+  | {{ exercise.note }}
+.gc-exercise-overview(
+  ui-sref="app.workoutExercise({ userId: userId, exerciseId: exercise.workout_exercise_id })"
+)
+  | View Exercise
+hr.gc-colored-line
+
+.gc-properties-types.gc-float-container
+  div
+    .gc-float-left
+  div
+    .gc-float-container
+      .gc-float-left(
+        ng-show="exercise.previous.exercise_results[0].exercise_result_items"
+      )
+        | Last Result
+      .gc-float-right
+        | Assigned
+
+.gc-properties.gc-float-container(
+  ng-repeat="property in exercise.exercise_properties | orderBy: 'position'"
+)
+  div
+    .gc-property-name.gc-float-left
+      | {{ property.personal_property.name }}
+    .gc-property-name(
+      ng-show="property.property_unit_name != 'sets' && property.property_unit_name != 'reps'"
+    )
+      | &nbsp({{ property.property_unit_name }})
+  div
+    .gc-float-container
+      .gc-property-value.gc-float-left(
+        ng-repeat="prevproperty in exercise.previous.exercise_results.slice(-1)[0].exercise_result_items"
+        ng-show="property.personal_property.name == prevproperty.name && exercise.previous.exercise_results.length > 0"
+      )
+        | {{ prevproperty.value }}
+      .gc-property-value.gc-float-right(
+        ng-if="!property.value2"
+      )
+        | {{ property.value }}
+      .gc-property-value.gc-float-right(
+        ng-if="property.value2"
+      )
+        | {{ property.value }}-{{ property.value2 }}

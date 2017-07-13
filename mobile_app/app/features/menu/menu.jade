@@ -1,0 +1,28 @@
+ion-side-menus(enable-menu-with-back-views="true")
+
+  ion-side-menu-content
+    ion-nav-bar.bar-dark.gymcloud-navbar
+      ion-nav-back-button.button-clear
+      ion-nav-buttons(side="right")
+        .gc-notification-badge(
+          ng-show="notificationsCount > 0"
+        )
+          | {{notificationsCount}}
+        a.gc-icon.gc-notification-bell(
+          ui-sref="app.notifications"
+          ng-hide="hideNotifications"
+        )
+    ion-nav-view(
+      name="menuContent"
+      animation="slide-left-right-ios7"
+    )
+
+  ng-include(
+    ng-if="isTrainer"
+    src="'features/menu/partials/_pro-sidebar.html'"
+  )
+
+  ng-include(
+    ng-if="!isTrainer"
+    src="'features/menu/partials/_client-sidebar.html'"
+  )

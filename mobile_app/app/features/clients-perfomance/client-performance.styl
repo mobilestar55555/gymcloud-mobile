@@ -1,0 +1,59 @@
+.gc-client-performance
+  .client-performance-info
+    
+    .last-week-performance
+      margin-right: 10px
+      font-size: 10px
+      color: #bbb
+    
+    .this-week-performance
+      font-size: 18px
+      
+      &:before
+        display: block
+        float: right
+      
+      &.positive
+        color: #14bf44
+        
+        &:before
+          content: '↑'      
+      
+      &.negative
+        color: #ee6d5d
+        
+        &:before
+          content: '↓'
+          
+      &.equal
+        color: #14bf44
+        
+        &:before
+          content: '='
+  
+  .item-accordion
+    &.opened
+      
+      .this-week-performance
+        text-align: left
+        
+        &:after
+          content: 'This Week'
+          display: block
+          font-size: 10px
+          text-align: left
+      
+      .last-week-performance
+        float: left
+        margin-top: 1px
+        text-align: right
+        
+        &:after
+          content: 'Last Week'
+          display: block
+          font-size 10px
+    
+  .accordion-list
+    .gc-workout-status-icon
+      width: 18px
+      height: 18px

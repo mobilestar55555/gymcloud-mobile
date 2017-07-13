@@ -1,0 +1,29 @@
+ion-view.bar-dark.gc-workout
+  ion-nav-title
+    span.gc-main-title
+      | {{ workout.name }}
+    span.gc-secondary-title
+      | {{ programName }}
+
+  ion-content(
+    ng-show="isEmpty"
+    scroll="false"
+  )
+    .gc-empty-page.gc-empty-workout.gc-empty-program-overview
+      span.gc-empty-text
+        | Looks like this workout is empty
+
+    ng-include(
+      src="'features/program/template-overview/partials/_program-template-overview-nav-buttons.html'"
+    )
+
+  ion-content(
+    ng-hide="isEmpty"
+  )
+    ng-include(
+      src="'features/workout/partials/_workout.html'"
+    )
+
+    ng-include(
+      src="'features/program/template-overview/partials/_program-template-overview-nav-buttons.html'"
+    )

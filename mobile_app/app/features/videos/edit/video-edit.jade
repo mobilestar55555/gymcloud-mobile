@@ -1,0 +1,29 @@
+ion-view.gc-video-edit.gc-video-library
+  ion-nav-title
+    | {{ video.name }}
+
+  ion-content.gc-content(
+    scroll="false"
+  )
+    .video-container
+      iframe(
+        ng-src="{{ video.embed_url }}"
+        frameborder="0"
+        width="560"
+        height="315"
+        allowfullscreen=""
+      )
+    .gc-list-wrapper
+      .list
+        span.gc-edit-block-label
+          | Title
+        .item
+          input.gc-edit-item-value(
+            type="text"
+            placeholder="Input your data here"
+            ng-model="video.name"
+            ng-blur="updateName(video.name)"
+          )
+    button.gc-btn-bordered.gc-delete-button(
+      ng-click="deleteVideo()"
+    ) Delete Video

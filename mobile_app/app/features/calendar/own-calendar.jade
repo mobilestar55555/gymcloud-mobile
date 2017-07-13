@@ -1,0 +1,39 @@
+ion-view.gc-calendar-page.bar-dark(hide-back-button="true")
+  ion-nav-buttons(side="left")
+    button.gc-icon.gc-hamburger(menu-toggle="left")
+  ion-nav-buttons(side="right")
+    span.gc-nav-action-button(
+      ng-click="userNewEvent()"
+      ng-hide="isTrainerCalendar"
+    )
+      | Schedule
+    a.gc-icon.gc-notification-bell(
+      ui-sref="app.notifications"
+      ng-show="isTrainerCalendar"
+    )
+  ion-nav-title
+    span.gc-main-title
+      | {{ title }}
+    span.gc-secondary-title
+      | {{ userName }}
+
+  ion-content.gc-content(
+    ng-show="eventsToShow.length == 0"
+    scroll="false"
+  )
+    ng-include(
+      src="'features/calendar/partials/_grid.html'"
+    )
+    .gc-empty-page.gc-empty-calendar
+      span.gc-empty-text
+        | No workouts scheduled
+
+  ion-content.gc-content(
+    ng-show="eventsToShow.length > 0"
+  )
+    ng-include(
+      src="'features/calendar/partials/_grid.html'"
+    )
+    ng-include(
+      src="'features/calendar/partials/_events-list.html'"
+    )

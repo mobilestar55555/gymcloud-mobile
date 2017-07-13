@@ -1,0 +1,25 @@
+{
+  "name": "gymcloud-mobile",
+  "author": "GymCloud Team <support@gymcloud.com>",
+  "description": "GymCloud: mobile application",
+  "private": "true",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "restangular": "~1.5.2",
+    "angular-moment": "~0.10.3",
+    "ng-file-upload": "~12.2.13",
+    "mathjs": "~3.1.3",
+    "ngInflection": "^1.1.10",
+    "angular-filter": "0.5.8",
+    "ngCable": "0.1.0"
+  },
+  "overrides": {
+    "lodash": {
+      "main": "lodash.js"
+    }
+  }
+}

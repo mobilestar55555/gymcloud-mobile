@@ -1,0 +1,34 @@
+ion-view.gc-conversation-page
+  ion-nav-title
+    | New conversation
+
+  ion-tabs.tabs-top.gc-tabs
+    ion-tab(
+      title="General"
+      on-select="fetchMessages(1)"
+    )
+      ion-content.has-header.has-footer(
+        has-bouncing="true"
+        delegate-handle="userMessageScroll"
+      )
+        ng-include(
+          src="'features/conversations/partials/_messages.html'"
+        )
+      ng-include(
+        src="'features/conversations/partials/_send-form.html'"
+      )
+
+    ion-tab(
+      title="Nutrition"
+      on-select="fetchMessages(3)"
+    )
+      ion-content.has-header.has-footer(
+        has-bouncing="true"
+        delegate-handle="userMessageScroll"
+      )
+        ng-include(
+          src="'features/conversations/partials/_messages.html'"
+        )
+      ng-include(
+        src="'features/conversations/partials/_send-form.html'"
+      )

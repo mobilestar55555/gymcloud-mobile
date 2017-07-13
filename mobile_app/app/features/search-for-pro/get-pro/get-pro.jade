@@ -1,0 +1,37 @@
+ion-view.gc-transparent-navbar.search-for-pro.get-pro
+  ion-nav-bar.gc-transparent-nav
+    ion-nav-back-button
+  ion-nav-title
+    | Client Sign up
+  ion-content(scroll="false")
+    .gc-page-content
+      label.item.item-radio
+        input(
+          type="radio"
+          name="selectionType"
+          required=""
+          ng-model="selectionType"
+          value="invite"
+        )
+        .radio-content
+          .item-content
+            img(src="img/icons/onboarding/invite-pro.png")
+            span
+              | Invite my Fitness Professional to join GymCloud
+      label.item.item-radio
+        input(
+          type="radio"
+          name="selectionType"
+          required=""
+          ng-model="selectionType"
+          value="find"
+        )
+        .radio-content
+          .item-content
+            img(src="img/icons/onboarding/find-pro.png")
+            span
+              | Find a Fitness Professional for me
+
+    button.gc-btn-bordered.gc-select-button(
+      ng-click="getPro(selectionType)"
+    ) Next

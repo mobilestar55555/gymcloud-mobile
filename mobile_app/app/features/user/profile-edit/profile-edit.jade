@@ -1,0 +1,138 @@
+ion-view.gc-profile-edit.bar-dark(hide-back-button="true")
+  ion-nav-buttons(side="left")
+    button.gc-icon.gc-hamburger(menu-toggle="left")
+  ion-nav-title
+    | Your profile
+  ion-content
+    ion-refresher(
+      pulling-text="Pull to refresh..."
+      on-refresh="initialize()"
+    )
+    .gc-account-type
+      img(src="img/trainer.png")
+      .gc-type-info
+        span.gc-type-label
+          | Your account type:
+        span.gc-type-name
+          | {{accountType}}
+    .gc-header
+      .row
+        .col.col-33
+          .gc-title-avatar(
+            style="background-color: {{ user.avatar_background_color }}"
+            ngf-select="uploadAvatar($file)"
+          )
+            img(
+              ng-src="{{ userProfile.avatar.large.url || 'img/avatar.png' }}"
+              alt=" "
+            )
+        span.gc-avatar-label.col.col-offset-10.col-50
+          | You can update your profile picture and major information.
+
+    .gc-list-wrapper
+      .list
+        span.gc-edit-block-label
+          | Body Stats
+        .item
+          span.gc-edit-item-label
+            | {{ bodyStats[0].label }} ({{ bodyStats[0].unit }})
+          input.gc-edit-item-value(
+            type="text"
+            placeholder="Input your data here"
+            only-digits=""
+            ng-model="bodyStats[0].value"
+            ng-blur="saveInfo(bodyStats[0].property, bodyStats[0].value)"
+          )
+        .item
+          span.gc-edit-item-label
+            | {{ bodyStats[1].label }} ({{ bodyStats[1].unit }})
+          span.gc-height-divider
+            |"
+          input.gc-edit-item-value.gc-value-inches(
+            type="text"
+            placeholder="Input your data here"
+            only-digits=""
+            ng-model="bodyStats[1].inches"
+            ng-blur="saveHeight('inches', bodyStats[1].inches)"
+          )
+          span.gc-height-divider
+            |'
+          input.gc-edit-item-value.gc-value-feets(
+            type="text"
+            placeholder="Input your data here"
+            only-digits=""
+            ng-model="bodyStats[1].feets"
+            ng-blur="saveHeight('feets', bodyStats[1].feets)"
+          )
+        .item
+          span.gc-edit-item-label
+            | {{ bodyStats[2].label }} ({{ bodyStats[2].unit }})
+          input.gc-edit-item-value(
+            type="text"
+            placeholder="Input your data here"
+            only-digits=""
+            ng-model="bodyStats[2].value"
+            ng-blur="saveInfo(bodyStats[2].property, bodyStats[2].value)"
+          )
+        span.gc-edit-block-label
+          | General Info
+        .item(
+          ng-repeat="item in generalInfo"
+        )
+          span.gc-edit-item-label
+            | {{ item.label }}
+          input.gc-edit-item-value(
+            type="text"
+            placeholder="Input your data here"
+            ng-class="{ 'gc-email-input': item.property == 'email' }"
+            ng-model="item.value"
+            ng-blur="saveInfo(item.property, item.value)"
+          )
+        .item
+          span.gc-edit-item-label
+            | Gender
+          .gc-edit-item-value
+            label
+              input.gender-input(
+                type="radio"
+                ng-model="user.gender"
+                name="gender"
+                value="male"
+                ng-click="saveInfo()"
+              )
+              | Male
+            label
+              input.gender-input(
+                type="radio"
+                ng-model="user.gender"
+                name="gender"
+                value="female"
+                ng-click="saveInfo()"
+              )
+              | Female
+        .item
+          span.gc-edit-item-label
+            | Birthday
+          label.gc-edit-item-value(
+            for="birthday-edit"
+          )
+            | {{ birthday.value | date:"d MMMM yyyy" }}
+            input#birthday-edit(
+              type="date"
+              ng-model="birthday.value"
+              ng-blur="saveInfo(birthday.property, birthday.value)"
+            )
+        .item
+          span.gc-edit-item-label
+            | Email
+          span.gc-edit-item-value
+            | {{ user.email }}
+
+    .gc-cert-upload-button(
+      ngf-select="certUpload($file)"
+    )
+      input(
+        type='file'
+        accept='application/pdf,application/x-pdf,image/*'
+      )
+      | + Attach Certificate

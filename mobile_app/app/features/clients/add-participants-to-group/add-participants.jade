@@ -1,0 +1,43 @@
+ion-view.bar-dark.gc-add-participants.gc-clients-page
+  ion-nav-buttons(side="right")
+    span.gc-nav-action-button(
+      ng-click="goToGroups()"
+    )
+      | Done
+  ion-nav-title
+    | Add participants
+
+  ion-content
+    .gc-list-wrapper
+      .list.list-inset
+        .item.gc-search-field
+          input.gc-search-input(
+            type="text"
+            placeholder="Search participant"
+            ng-model="query"
+          )
+          i.gc-icon.gc-search
+        label.item.item-checkbox-right(
+          ng-repeat="client in clients | filter:query"
+          ng-hide="client.id == userId"
+        )
+          .gc-item-main
+            .gc-avatar-wrapper(
+              style="background-color: {{ client.user_profile.avatar_background_color }}"
+            )
+              img(
+                ng-src="{{ client.user_profile.avatar.thumb.url || 'img/avatar.png' }}"
+                alt=" "
+              )
+            .gc-name(
+              ng-if="client.id != userId"
+            )
+              | {{ client.user_profile.first_name }} {{ client.user_profile.last_name }}
+            .gc-action-wrapper.checkbox.checkbox-input-hidden.disable-pointer-events.checkbox-circle
+              input(
+                type="checkbox"
+                ng-click="addToGroup($event, client.is_in_group, client)"
+                ng-model="client.is_in_group"
+                ng-checked="client.is_in_group"
+              )
+              i.checkbox-icon

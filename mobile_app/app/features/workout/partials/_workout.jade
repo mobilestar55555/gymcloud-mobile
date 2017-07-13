@@ -1,0 +1,94 @@
+.gc-workout-info(
+  ng-if="workout.description || workout.note || workout.video_url"
+)
+  div(
+    ng-if="workout.description"
+  )
+    .gc-info-title
+      | {{ templateType }} description:
+    .gc-info-text
+      | {{ workout.description }}
+  div(
+    ng-if="workout.note"
+  )
+    .gc-info-title
+      | {{ templateType }} note:
+    .gc-info-text
+      | {{ workout.note }}
+
+  .gc-show-video(
+    ng-if="workout.video_url && !videoIsVisible"
+    ng-click="switchVideo()"
+  )
+    img(src="img/icons/workout-video.png")
+    div
+      | Workout Video
+
+  .gc-workout-video(
+    ng-show="workout.video_url && videoIsVisible"
+  )
+    iframe(
+      ng-src="{{ workout.video_url }}"
+      frameborder="0"
+      width="560"
+      height="315"
+      allowfullscreen=""
+    )
+
+  .gc-hide-video(
+    ng-if="workout.video_url && videoIsVisible"
+    ng-click="switchVideo()"
+  )
+    | Hide Video
+
+.gc-workout-exercises-wrapper
+  .gc-list-wrapper(
+    ng-if="workout.exercises.length > 0"
+  )
+    .list
+      .item(
+        ng-if="warmup"
+        ng-click="goToWarmupOverview()"
+      )
+        i.gc-workout-order.no-group-warmup
+          img(src="img/icons/warmup-exercise.png")
+        .col.col-60.gc-exercise-name
+          | {{ warmup.name }}
+        .col.col-20.gc-exercise-properties
+          span.gc-property-value
+            | {{ warmup.exercises.length }} exercises
+        i.gc-icon.gc-icon-right-arrow
+      .item(
+        ng-repeat="exercise in workout.exercises | orderBy: 'position'"
+        ng-click="goToExercise(exercise)"
+      )
+        i.gc-workout-order.no-group(
+          class="{{ exercise.order_name.charAt(0) }}-group"
+          ng-hide="workout.is_warmup"
+        )
+          | {{ exercise.order_name }}
+        i.gc-workout-order.no-group-warmup(
+          class="{{ exercise.order_name.charAt(0) }}-group"
+          ng-show="workout.is_warmup"
+        )
+          img(src="img/icons/warmup-exercise.png")
+        .col.col-70.gc-exercise-name
+          | {{ exercise.name }}
+          .gc-training-note(
+            ng-show="exercise.note"
+          )
+            | {{ exercise.note }}
+        .col.col-20.gc-exercise-properties
+          div(
+            ng-repeat="property in exercise.exercise_properties | orderBy: 'position'"
+          )
+            span.gc-property-value(
+              ng-if="!property.value2"
+            )
+              | {{ property.value }}
+            span.gc-property-value(
+              ng-if="property.value2"
+            )
+              | {{ property.value }}-{{ property.value2 }}
+            span
+              |  {{ property.property_unit_name }}

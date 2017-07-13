@@ -1,0 +1,73 @@
+ion-view.gc-transparent-navbar.bar-dark.gc-sign-in
+  ion-nav-bar.gc-transparent-nav
+    ion-nav-back-button
+  ion-nav-title
+    | Sign in
+  ion-content
+    .gc-sign-in-content
+
+      .row
+        .col.gc-error.gc-sign-in-error(
+          ng-show="signInErrorMessage"
+        )
+          | {{ signInErrorMessage }}
+
+      .row
+        .col.gc-sign-in-buttons
+          .gc-btn-bordered.gc-facebook-sign-in.disabled(
+            ng-click="facebookLogin()"
+          )
+            i.icon.ion-social-facebook
+            div
+              | Sign in with Facebook
+          .gc-btn-bordered.gc-google-sign-in.disabled(
+            ng-click="googleLogin()"
+          )
+            i.icon.ion-social-googleplus-outline
+            div
+              | Sign in with Google+
+
+      .row
+        .col.gc-sign-in-form(
+          ng-form=""
+          name="signInForm"
+        )
+          label
+            input(
+              type="email"
+              name="email"
+              placeholder="Login"
+              required=""
+              ng-model="user.username"
+            )
+          span.gc-error(
+            ng-show="signInForm.email.$error.email"
+          )
+            | Enter a valid email
+          span.gc-error(
+            ng-show="signInForm.email.$dirty && signInForm.email.$error.required"
+          )
+            | Email is required
+          label
+            input(
+              type="password"
+              name="password"
+              placeholder="Password"
+              required=""
+              ng-model="user.password"
+            )
+          span.gc-error(
+            ng-show="signInForm.password.$dirty && signInForm.password.$error.required"
+          )
+            | Password is required
+          button#email-login.gc-btn-bordered.gc-submit-btn(
+            ng-disabled="signInForm.$invalid"
+            ng-click="login()"
+          )
+            | Sign In
+
+      .row
+        a.col.col-50.col-offset-25.gc-forgot-password-link(
+          ui-sref="forgotPassword"
+        )
+          | Forgot your password?

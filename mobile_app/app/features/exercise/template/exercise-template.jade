@@ -1,0 +1,23 @@
+ion-view.bar-dark.gc-exercise(hide-back-button="true")
+  ion-nav-buttons(ng-show="isTrainer", side="left")
+    button.gc-icon.gc-hamburger(menu-toggle="left")
+  ion-nav-title
+    span.gc-main-title
+      | {{ exercise.name }}
+    span.gc-secondary-title
+      | {{ userName }}
+
+  ion-content(
+    scroll="false"
+    ng-show="isEmpty"
+  )
+    .gc-empty-page.gc-empty-exercise
+      span.gc-empty-text
+        | Looks like this exercise is empty
+
+  ion-content(
+    ng-hide="isEmpty"
+  )
+    ng-include(
+      src="'features/exercise/partials/_exercise-content.html'"
+    )

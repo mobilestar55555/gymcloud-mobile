@@ -1,0 +1,42 @@
+ion-view.gc-this-week-trainer-workout.custom-list-items.bar-dark(hide-back-button="false")
+  ion-nav-title
+    | Workouts This Week
+  ion-content(
+    ng-show="isEmpty"
+    scroll="false"
+  )
+    .gc-empty-page.gc-empty-workouts-this-week
+      span.gc-empty-text
+        | Looks like there are no workouts scheduled this week.
+
+  ion-content(
+    ng-hide="isEmpty"
+  )
+    ion-refresher(
+      pulling-text="Pull to refresh..."
+      on-refresh="initialize()"
+    )
+    div(ng-repeat="(key, value) in events | groupBy: 'date'")
+      .day-workout-title.clearfix
+        h2
+          | {{ key  | date:'EEEE, dd MMM' }}
+        .badge(ng-class="{'badge-gray' : isPast(value[0]), 'badge-blue' : isFuture(value[0])}")
+          | {{ value.length }}
+      .gc-list-wrapper
+        .list
+          a.item.item-avatar(ng-repeat="event in value")
+            img.client-avatar(ng-src="{{event.person_avatar || 'img/avatar.png'}}")
+            .client-user-info
+              h2
+                | {{event.person_name}}
+              p
+                | {{ event.workout_name }}
+            i.gc-workout-status-icon.complete(
+              ng-show="isPast(event)"
+              ng-class="{'complete' : event.is_completed, 'incomplete' : !event.is_completed}"
+            )
+            .scheduled-workout-time(ng-show="isFuture(event)")
+              span.time
+                | {{ event.begins_at | date:'h:mm a' }}
+              span.date
+                | {{ event.begins_at | date:'MM/dd/yyyy' }}

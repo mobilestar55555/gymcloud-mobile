@@ -1,0 +1,22 @@
+.item.item-text-wrap(
+  ng-click="showResultsForm($index)"
+  ng-hide="visibleResultsForm[$index]"
+)
+  .gc-results-cross-btn
+  .gc-results-btn-text
+    | Enter Results
+
+.item.item-text-wrap(
+  ng-click="saveResult(exercise, $index)"
+  ng-show="visibleResultsForm[$index]"
+)
+  .gc-results-cross-btn
+  .gc-results-btn-text
+    | Save
+
+.item.item-text-wrap(
+  ng-click="saveAndGoNextExercise(currentExercisesGroup)"
+  ng-show="exercise.exercise_results.length"
+)
+  .gc-results-btn-text
+    | Next Exercise {{exercise_results}}

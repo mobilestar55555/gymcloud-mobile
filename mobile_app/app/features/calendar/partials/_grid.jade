@@ -1,0 +1,24 @@
+.row.gc-month-control
+  .col.col-25(
+    ng-click="prevMonth()"
+  )
+    a.gc-month-nav
+      i.icon.ion-chevron-left
+  .col.col-50.text-center
+    | {{ month }} {{ year }}
+  .col.col-25.text-right(
+    ng-click="nextMonth()"
+  )
+    a.gc-month-nav
+      i.icon.ion-chevron-right
+
+.row.gc-wrapper
+  .col.col-100.text-center
+    .gc-week(
+      ng-repeat="week in weeks"
+    )
+      a.gc-day(
+        ng-click="showEvents(day)"
+        ng-repeat="day in week"
+        ng-class="{ 'gc-other-month': day.otherMonth, 'gc-schedule': day.events.length, 'gc-selected': day.day == selectedDay.day && day.week == selectedDay.week }"
+      ) {{ day.day }}

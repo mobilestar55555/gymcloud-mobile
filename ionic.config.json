@@ -1,0 +1,11 @@
+{
+  "name": "gymcloud-mobile-staging",
+  "app_id": "97bd8baa",
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
+}

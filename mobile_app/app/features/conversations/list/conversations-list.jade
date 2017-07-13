@@ -1,0 +1,55 @@
+ion-view.gc-conversations-list-page(hide-back-button="true")
+  ion-nav-buttons(side="left")
+    button.gc-icon.gc-hamburger(menu-toggle="left")
+  ion-nav-buttons(side="right")
+    span.gc-nav-action-button(
+      ui-sref="app.newConversationRecipients"
+    )
+      | New
+  ion-nav-title
+    | Messages
+  ion-content
+    ion-refresher(
+      pulling-text="Pull to refresh..."
+      on-refresh="initialize()"
+    )
+    ion-list
+      .gc-list-wrapper(
+        ng-if="emptyConversations"
+      )
+        ng-include(
+          src="'features/conversations/partials/_empty-conversations-list.html'"
+        )
+      .gc-list-wrapper(
+        ng-if="!emptyConversations"
+      )
+        .list.list-inset
+          .item.gc-search-field
+            input.gc-search-input(
+              type="text"
+              placeholder="Search Conversation"
+              ng-model="individualQuery"
+            )
+            i.gc-icon.gc-search
+          ion-item.item(
+            ng-repeat="conversation in conversations | filter:individualQuery | orderBy:'conversation.updated_at'"
+            ng-click="goToConversation(conversation)"
+          )
+            .gc-item-main
+              .gc-avatar-wrapper
+                img(
+                  ng-src="{{ conversation.recipients[0].avatar || 'img/avatar.png' }}"
+                  alt=" "
+                )
+              .gc-dialog-info
+                .gc-sender-info
+                  .gc-name
+                    | {{ conversation.recipients[0].full_name }}
+                  .gc-date
+                    | {{ conversation.updated_at | date:'hh:mm a MM/dd/yyyy' }}
+                .gc-dialog(ng-class="{ 'dialog-unread': !conversation.last_message.is_read}")
+                  | {{ conversation.last_message.body }}
+            ion-option-button.button-info(
+              ng-click="deleteConversation(conversation.id, $index)"
+            )
+              img(src="img/icons/message-trash.png")

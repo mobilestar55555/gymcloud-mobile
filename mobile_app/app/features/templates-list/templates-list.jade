@@ -1,0 +1,41 @@
+ion-view.bar-dark
+  ion-nav-buttons(side="right")
+    span.gc-nav-action-button(
+      ui-sref="app.newTemplate({ templateType: newTemplateType })"
+    )
+      | Add new
+  ion-nav-title
+    span.gc-main-title
+      | {{ itemsType }}
+    span.gc-secondary-title
+      | {{ userName }}
+  ion-content(
+    ng-show="isEmpty"
+    scroll="false"
+  )
+    .gc-empty-page(
+      ng-show="isEmpty"
+      class="gc-empty-{{ itemsType }}-list"
+    )
+      span.gc-empty-text
+        | Looks like this personal {{ itemsType }} list is empty
+
+  ion-content(
+    ng-hide="isEmpty"
+  )
+    .gc-list-wrapper
+      .list
+        a.item.item-icon-left.item-icon-right(
+          ng-repeat="item in currentFolder.items | orderBy: ['isFolder', 'name']"
+          ng-click="goToItem(item)"
+        )
+          i.gc-icon(
+            ng-hide="item.isFolder"
+            class="{{ icon }}"
+          )
+          i.gc-icon(
+            ng-show="item.isFolder"
+            class="gc-icon-folder"
+          )
+          | {{ item.name }}
+          i.gc-icon.gc-icon-right-arrow

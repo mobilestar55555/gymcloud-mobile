@@ -1,0 +1,89 @@
+.gc-header(
+  ng-class="{ 'gc-trainer-background': user.is_pro }"
+)
+  .row
+    .col.col-100.gc-title.text-center
+      .gc-title-avatar(
+        style="background-color: {{ user.user_profile.avatar_background_color }}"
+      )
+        img(
+          ng-src="{{ user.user_profile.avatar.large.url || 'img/avatar.png' }}"
+          alt=" "
+        )
+      .gc-info
+        .row.gc-info-titles
+          span.col.col-20 height
+          span.col.col-20 weight
+          span.col.col-25 bodyfat
+          span.col.col-18 age
+          span.col.col-17 gender
+        hr
+        .row.gc-info-content
+          span.col.col-20(
+            ng-show="user.user_profile.height"
+          )
+            | {{ userHeight.feets }}' {{ userHeight.inches }}"
+          span.col.col-20(
+            ng-show="!user.user_profile.height"
+          )
+          span.col.col-20(
+            ng-show="user.user_profile.weight"
+          )
+            | {{ user.user_profile.weight | number : 0 }} LBS
+          span.col.col-20(
+            ng-show="!user.user_profile.weight"
+          )
+          span.col.col-25
+            | {{ user.user_profile.bodyfat | number : 0 }}
+          span.col.col-18
+            | {{ calculateAge(user.user_profile.birthday) }}
+          span.col.col-17
+            | {{ user.user_profile.gender }}
+
+.gc-list-wrapper
+  .list
+    a.item.item-icon-left.item-icon-right(
+      ui-sref="app.personalItemsList({ userId: userId, personalType: 'personal-exercises' })"
+    )
+      i.gc-icon.gc-icon-exercises
+      | Exercises
+      span.badge
+        | {{ exercisesCount }}
+      i.gc-icon.gc-icon-right-arrow
+    a.item.item-icon-left.item-icon-right(
+      ui-sref="app.personalItemsList({ userId: userId, personalType: 'personal-warmups' })"
+    )
+      i.gc-icon.gc-icon-warmups
+      | Warmups
+      span.badge
+        | {{ warmupsCount }}
+      i.gc-icon.gc-icon-right-arrow
+    a.item.item-icon-left.item-icon-right(
+      ui-sref="app.personalItemsList({ userId: userId, personalType: 'personal-workouts' })"
+    )
+      i.gc-icon.gc-icon-workouts
+      | Workouts
+      span.badge
+        | {{ personalWorkoutsCount }}
+      i.gc-icon.gc-icon-right-arrow
+    a.item.item-icon-left.item-icon-right(
+      ui-sref="app.personalItemsList({ userId: userId, personalType: 'personal-programs' })"
+    )
+      i.gc-icon.gc-icon-programs
+      | Programs
+      span.badge
+        | {{ programsCount }} ({{ programWorkoutsCount }})
+      i.gc-icon.gc-icon-right-arrow
+    a.item.item-icon-left.item-icon-right(
+      ng-if="!user_is_pro"
+      ui-sref="app.clientVideoLibrary({ userId: userId })"
+    )
+      i.gc-icon.gc-icon-videos
+      | Videos
+      i.gc-icon.gc-icon-right-arrow
+    a.item.item-icon-left.item-icon-right(
+      ng-click="navigateToCalendar()"
+    )
+      i.gc-icon.gc-icon-calendar
+      | Calendar
+      i.gc-icon.gc-icon-right-arrow

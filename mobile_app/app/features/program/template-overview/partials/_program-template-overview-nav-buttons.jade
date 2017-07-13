@@ -1,0 +1,15 @@
+.row.overview-nav-buttons
+  .overview-nav-button(
+    ng-show="workoutsIds.prevWorkoutId"
+    ui-sref="app.programTemplateOverview({ programId: programId, workoutId: workoutsIds.prevWorkoutId })"
+  ) < Previous Workout
+  .overview-nav-button.overview-nav-button-disabled(
+    ng-hide="workoutsIds.prevWorkoutId"
+  ) < Previous Workout
+  .overview-nav-button(
+    ng-show="workoutsIds.nextWorkoutId"
+    ui-sref="app.programTemplateOverview({ programId: programId, workoutId: workoutsIds.nextWorkoutId })"
+  ) Next Workout >
+  .overview-nav-button.overview-nav-button-disabled(
+    ng-hide="workoutsIds.nextWorkoutId"
+  ) Next Workout >

@@ -1,0 +1,36 @@
+ion-view.gc-video-library
+  ion-nav-title
+    | Video Library
+
+  ion-content.gc-content(
+    scroll="false"
+    ng-show="videos.length == 0"
+  )
+    .gc-empty-page
+      span.gc-empty-text
+        | No videos have been uploaded yet
+
+  ion-content.gc-content(
+    ng-show="videos.length > 0"
+    overflow-scroll="true"
+  )
+    ion-refresher(
+      pulling-text="Pull to refresh..."
+      on-refresh="initialize()"
+    )
+    .video-container(
+      ng-repeat="video in videos"
+    )
+      iframe(
+        ng-src="{{ video.embed_url }}"
+        frameborder="0"
+        width="560"
+        height="315"
+        allowfullscreen=""
+      )
+      .gc-video-info
+        .gc-video-name
+          | {{ video.name | removeExtension}}
+        .gc-video-other
+          .gc-video-date
+            | {{ video.uploaded_at | date: 'MMM d' }}

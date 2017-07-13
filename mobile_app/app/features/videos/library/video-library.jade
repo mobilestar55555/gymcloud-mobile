@@ -1,0 +1,73 @@
+ion-view.gc-video-library(hide-back-button="true")
+  ion-nav-buttons(side="left")
+    button.gc-icon.gc-hamburger(menu-toggle="left")
+  ion-nav-buttons(side="right")
+    span.gc-nav-action-button(
+      ng-if="videos.length > 0 && !isAndroid"
+      ng-click="showPopup()"
+    )
+      | Add New
+    span#open-camera(
+      ng-if="!isAndroid"
+      ngf-select="uploadVideo($file)"
+      ngf-capture="'camera'"
+    )
+    span.gc-nav-action-button(
+      ng-if="videos.length > 0 && isAndroid"
+      ngf-select="uploadVideo($file)"
+    )
+      | Add New
+  ion-nav-title
+    | Video Library
+
+  ion-content.gc-content(
+    scroll="false"
+    ng-show="videos.length == 0"
+  )
+    .gc-empty-page
+      span.gc-empty-text
+        | Looks like you don't have any videos
+      button.gc-btn-bordered.gc-empty-btn(
+        ng-if="!isAndroid"
+        ng-click="showPopup()"
+      )
+        | Upload Video
+      button.gc-btn-bordered.gc-empty-btn(
+        ng-if="isAndroid"
+        ngf-select="uploadVideo($file)"
+      )
+        | Upload Video
+
+  ion-content.gc-content(
+    ng-show="videos.length > 0"
+    overflow-scroll="true"
+  )
+    ion-refresher(
+      pulling-text="Pull to refresh..."
+      on-refresh="initialize()"
+    )
+    .video-container(
+      ng-repeat="video in videos"
+    )
+      .gc-video-uploading(ng-if="!video.embed_url")
+        | Video was uploaded and is being processing
+        br
+        | Please check it in 2 minutes
+      iframe(
+        ng-if="video.embed_url"
+        ng-src="{{ video.embed_url }}"
+        frameborder="0"
+        width="560"
+        height="315"
+        allowfullscreen=""
+      )
+      .gc-video-info
+        .gc-video-name
+          | {{ video.name | removeExtension}}
+        .gc-video-other
+          .gc-video-date
+            | {{ video.uploaded_at | date: 'MMM d' }}
+          img.gc-context-icon(
+            src="img/icons/vertical-dots.png"
+            ui-sref="app.videoEdit({ videoId: video.id })"
+          )

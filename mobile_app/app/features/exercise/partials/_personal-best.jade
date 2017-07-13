@@ -1,0 +1,19 @@
+.gc-personal-best(
+  ng-if="bestResults"
+)
+  div(
+    ng-repeat="personalBest in bestResults"
+  )
+    .gc-definition-time.row
+      span.col
+        | Defined
+      span.col.text-right
+        | {{ personalBest.created_at | date:"MMM d, y, h:mm:ss a" }}
+    .gc-properties.row
+      .col(
+        ng-repeat="item in personalBest.exercise_result_items | orderBy:'position'"
+      )
+        .gc-property-value
+          | {{ item.value }}
+        .gc-property-name
+          | {{ item.name }}

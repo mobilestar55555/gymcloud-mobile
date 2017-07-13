@@ -1,0 +1,31 @@
+ion-view.gc-new-conversation-recipients-page
+  ion-nav-title
+    | New conversation
+  ion-content
+    ion-list
+      .gc-list-wrapper(
+        ng-if="!emptyConversations"
+      )
+        .list.list-inset
+          .item.gc-search-field
+            input.gc-search-input(
+              type="text"
+              placeholder="Search User"
+              ng-model="individualQuery"
+            )
+            i.gc-icon.gc-search
+          .item(
+            ng-hide="client.id == currentUserId"
+            ui-sref="app.newConversation({ recipientId: client.id })"
+            ng-repeat="client in clients | filter:individualQuery | orderBy:['user_profile.first_name', 'user_profile.last_name']"
+          )
+            .gc-item-main
+              .gc-avatar-wrapper(
+                style="background-color: {{ client.user_profile.avatar_background_color }}"
+              )
+                img(
+                  ng-src="{{ client.user_profile.avatar.thumb.url || 'img/avatar.png' }}"
+                  alt=" "
+                )
+              .gc-name
+                | {{ client.user_profile.first_name }} {{ client.user_profile.last_name }}

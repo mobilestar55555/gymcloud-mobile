@@ -1,0 +1,36 @@
+ion-view.bar-dark.gc-transparent-navbar.gc-onboarding-account
+  ion-nav-bar.gc-transparent-nav
+    ion-nav-back-button
+  ion-nav-title
+    span.nav-bar-title
+      | Select your account type
+
+  ion-content(scroll="false")
+    ion-list
+      label.item.item-radio(
+        ng-repeat='type in accountTypes'
+        ng-model='$parent.selectedType'
+        ng-value='type.id'
+      )
+        input.ng-valid.ng-dirty.ng-valid-parse.ng-touched(
+          type='radio'
+          name='radio-group'
+          ng-value='type.id'
+          ng-model='$parent.selectedType'
+          value='1'
+          style=''
+        )
+        .radio-content
+          i.gc-icon.gc-acc(
+            ng-class="type.icon"
+          )
+          .item-content.disable-pointer-events
+            | {{ type.name }}
+          i.radio-icon.disable-pointer-events.icon.ion-checkmark
+
+    span.gc-hint
+      | You can always change Account type in your profile.
+
+    button.gc-btn-bordered.gc-select-button(
+      ng-click="selectType(selectedType)"
+    ) Next

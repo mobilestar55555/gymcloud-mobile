@@ -1,0 +1,131 @@
+.gc-conversations-list-page
+  overflow: visible
+
+  .gc-list-wrapper
+
+    .gc-empty-conversations-list
+      height: 80vh
+      display: flex
+      align-items: center
+      justify-content: center
+      flex-direction: column
+
+      img
+        height: 30px
+
+      span
+        margin: 20px 0
+        text-align: center
+        width: 220px
+        color: #cbcacb
+
+    .list
+      background: transparent
+      margin: 10px 0 0 0
+
+      .item
+        padding: 0
+        background: transparent
+        border: none
+        border-top: 1px solid #e9eaea !important
+        font-size: 14px
+        color: #5f5f5f
+
+        &.item-complex
+          .item-content
+            padding: 0 !important
+
+        &.gc-search-field
+          padding: 6px
+
+          .gc-search-input
+            margin: 4px
+            width: 100%
+            padding: 0 20px
+
+        .button-info
+          background-color: #db0327
+
+          img
+            width: 15px
+            margin: 0 auto
+
+        &.gc-me
+          background-color: #e8e8e8 !important;
+
+        &:first-child
+          border-top: 1px solid #e9eaea
+
+        .gc-item-main
+          display: flex
+          display: -webkit-flex
+          flex-direction: row
+          -webkit-flex-direction: row
+          align-items: center
+          -webkit-align-items: center
+          justify-content: flex-start
+          -webkit-justify-content: flex-start
+          padding: 0 10px
+          background: transparent
+          position: relative
+
+          .gc-avatar-wrapper
+            width: 30px
+            min-width: 30px
+            margin-right: 10px
+            height: 30px
+            border-radius: 30px
+            background-size: 70%
+            position: relative
+
+            img
+              width: 30px
+              height: 30px
+              border-radius: 30px
+
+          .dialog-unread
+            font-weight: bold
+
+          .gc-dialog-info
+            width: 90%
+            display: flex
+            flex-direction: column
+
+            .gc-sender-info
+              display: flex
+              justify-content: space-between
+              padding: 5px 0
+
+              .gc-name
+                width: 100%
+                text-align: left
+                color: #3a99d8
+                font-size: 15px
+
+              .gc-date
+                font-size: 10px
+                color: #bbb
+
+            .gc-dialog
+              font-size: 13px
+              max-width: 100%
+              overflow: hidden
+              white-space: pre-wrap
+              text-overflow: ellipsis
+              height: 32px
+              line-height: 1.2
+              margin-bottom: 5px
+
+
+
+.platform-ios
+
+  &.platform-cordova
+
+    .gc-clients-page
+
+      .gc-list-wrapper
+
+          .list
+            background: transparent
+            margin: 30px 0 0 0

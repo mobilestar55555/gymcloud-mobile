@@ -1,0 +1,28 @@
+.complete-workouts.trainer
+  svg.complete-indicator(viewbox='0 0.5 10 9')
+    path.stroke.default(d='M2 8 A 4 4 0 1 1 8 8')
+    //- For managing progress, change first number in stroke-dasharray:
+    path.stroke.progress(
+      d='M2 8 A 4 4 0 1 1 8 8'
+      style='stroke-dasharray: {{coefficient}} 20'
+    )
+
+  .workouts-counters
+    span.complete-counter
+      | {{ dashboard.events_completed_this_week_count }}
+    span.scheduled-counter
+      | {{ dashboard.events_scheduled_this_week_count }}
+    span.label-counter
+      | Workouts completed by clients this week
+
+.complete-workouts.trainer
+  i.dynamic-indicator(
+    ng-class="{positive : eventsDynamic.positive, negative : eventsDynamic.negative, equals : eventsDynamic.equals}"
+  )
+  .workouts-counters
+    span.complete-counter
+      | {{ dashboard.events_scheduled_this_week_count }}
+    span.scheduled-counter
+      | {{ dashboard.events_scheduled_last_week_count }}
+    span.label-counter
+      | Workouts scheduled this week vs. last week

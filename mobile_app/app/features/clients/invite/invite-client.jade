@@ -1,0 +1,60 @@
+ion-view.bar-dark.gc-invite-client
+  ion-nav-title
+    | New {{ userType | singularize}}
+
+  ion-content
+    .gc-invitation-form(
+      ng-form=""
+      name="invitationForm"
+    )
+      img(src="img/invite-client.png")
+      span.gc-hint
+        | Invite your {{ userType | singularize}} and start assigning workouts and programs.
+      label.item
+        input(
+          type="text"
+          name="firstName"
+          placeholder="First Name"
+          required=""
+          ng-model="userData.first_name"
+        )
+      span.gc-error(
+        ng-show="invitationForm.firstName.$dirty && invitationForm.firstName.$error.required"
+      ) First Name is required
+
+      label.item
+        input(
+          type="text"
+          name="lastName"
+          placeholder="Last Name"
+          required=""
+          ng-model="userData.last_name"
+        )
+      span.gc-error(
+        ng-show="invitationForm.lastName.$dirty && invitationForm.lastName.$error.required"
+      ) Last Name is required
+
+      span.gc-email-button(
+        ng-click="inviteUser()"
+        ng-hide="isInvitation"
+      )
+        | Add an email invitation
+
+      label.item(
+        ng-show="isInvitation"
+      )
+        input(
+          type="email"
+          name="email"
+          placeholder="Email"
+          ng-model="userData.email"
+        )
+      span.gc-error(
+        ng-show="invitationForm.email.$error.email"
+      )
+        | Enter a valid email
+
+    button.gc-btn-bordered.gc-submit-btn(
+      ng-disabled="invitationForm.$invalid"
+      ng-click="invite(userData)"
+    ) {{ buttonText }}

@@ -1,0 +1,13 @@
+ion-view.gc-client-group.bar-dark
+  ion-nav-title
+    | {{ group.name }}
+  ion-content
+
+    ion-refresher(
+      pulling-text="Pull to refresh..."
+      on-refresh="initialize()"
+    )
+
+    ng-include(
+      src="'features/clients/client-group/_client-group.html'"
+    )

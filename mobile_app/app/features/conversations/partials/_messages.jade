@@ -1,0 +1,56 @@
+ng-include(
+  ng-if="isEmptyConversation || isNewConversation"
+  src="'features/conversations/partials/_empty-conversation.html'"
+)
+.message-wrapper(
+  ng-repeat="message in conversation | orderBy:'created_at'"
+  ng-class="{ 'margin-message-with-program': showInfo && message.program_name, 'margin-message-without-program': showInfo && !message.program_name}"
+)
+  .chat-bubble(
+    ng-class="{ 'left': currentUser.id !== message.sender_id, 'right': currentUser.id === message.sender_id }"
+  )
+    .message-attachment(
+      ng-show="message.attachment.url"
+    )
+      img(
+        ng-src="{{ message.attachment.url }}"
+        alt=" "
+      )
+    .message-attachment(
+      ng-show="message.video_id"
+    )
+      .gc-video-uploading(ng-if="message.video_id && !message.video_url")
+        | Video was uploaded and is being processing
+        br
+        | Please check it in 2 minutes
+      iframe(
+        ng-if="message.video_url"
+        ng-src="{{ message.video_url }}"
+        frameborder="0"
+        width="225"
+        height="155"
+        allowfullscreen=""
+      )
+    .message(
+      ng-show="message.body"
+    )
+      | {{message.body}}
+    .message-detail
+      span(am-time-ago="message.created_at")
+      img(
+        ng-show="message.message_category == 2 && !commentsState.visible"
+        ng-click="showInfo = !showInfo"
+        src="img/icons/empty_pages/workout.png"
+      )
+    .gc-event-info(
+      ng-class="{ 'visible-info' : showInfo }"
+      ng-show="message.program_name"
+    )
+      .icon.side-menu-icon-workout
+      | {{message.program_name}}
+    .gc-event-info.gc-info-bordered(
+      ng-class="{ 'gc-workout-info': message.program_name, 'visible-info' : showInfo }"
+    )
+      .icon.side-menu-icon-program
+      | {{message.workout_name}}
+  .cf

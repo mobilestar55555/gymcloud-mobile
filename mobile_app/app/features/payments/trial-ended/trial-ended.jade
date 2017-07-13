@@ -1,0 +1,21 @@
+ion-view.bar-dark.gc-transparent-navbar.gc-trial-ended(hide-back-button="true")
+
+  ion-nav-buttons(side="right")
+
+  ion-nav-title
+    span.nav-bar-title
+      | Trial Ended
+
+  ion-content(scroll="false")
+    .gc-trial-container
+      span.gc-trial-text
+        | Your Free Trial has Ended
+      img.gc-trial-ended-image(src="img/trial_ended.png")
+      .gc-instructions
+        span
+          | Enter your payment information to continue using the GymCloud fitness platform.
+
+    button.gc-btn-bordered.gc-select-button(
+      browse-to="{{webappUrl}}/#accessToken/{{accessToken}}/payments/info"
+    )
+      | Enter Payment Info
